@@ -1,0 +1,19 @@
+# This file can be used to install module dependencies for unit testing
+# See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
+
+---
+fixtures:
+  repositories:
+    stdlib:
+      repo: https://github.com/puppetlabs/puppetlabs-stdlib.git
+    apt:
+      repo: https://github.com/puppetlabs/puppetlabs-apt.git
+    yumrepo_core:
+      repo: https://github.com/puppetlabs/puppetlabs-yumrepo_core.git
+      puppet_version: ">= 6.0.0"
+    firewall:
+      repo: https://github.com/puppetlabs/puppetlabs-firewall.git
+    epel:
+      repo: https://github.com/stahnma/puppet-module-epel.git
+  symlinks:
+    perfsonar: "#{source_dir}"

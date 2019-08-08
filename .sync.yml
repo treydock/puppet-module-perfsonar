@@ -25,6 +25,7 @@
     - set: ubuntu-1804
       collection: puppet6
   user: treydock
+  secure: "muLzPZHN/E/gScJPe5Um2Nh5BqmQlT6KJumO92zlusSFLP8FOxwV7Nhc9HdoHPcUJ1feGto6Fkwgwqe+YycDGXqgwAtts3sOICvVqkV+2PjqQAmw2AIC9p8ppDCzMAdGPXDIBwKPs+0uhY/pIB1+EToRFvXELSj5Gl3UK49YRSNjtgIrNB1ALzHDWMobNjsk1uiJupyDoyDKytyQiX6xTbmE03SA96UuD7bN7IqIPDhCe8xzx+VGCiHPnlV9tSLwhXkzHslXwfCCd33N8VpmqpE+8/gXiiB3Ee3TBXd7+HlzbkmUperigPzyCC0uRTy8Ugvk8TGBDFcLfdZPN+UK6md1rAhWfrvSAoEpiPkZHtfnb6ziWLG7HzXPrC731h1/Ohd6ojEGEqxryGSFQNpjiapYqtiUg+usQgUGU26Jzs5ES6sNdE7Rp1Uy/cGnFH/+rYp5HYPiXmAgVQuwsd6sxi5fNIG+5f97bfhFcZ0QHmdNoG3S46XSwHC0Jc0z9WNQZjd4JsGD5QfD6GGlBv3ZkLu2Ob4bRmvfzpoy3ggxgfgdRngAX+z/RSaPdeDL5QcFBN8I7C8R5g6kAH15UwLE5/Tv9grXBb1CarhZblkqdbJkK9udiA7VBPYlsYa8C24K4f5Fiq9jIWcC0s5Spy6j0B9m1SjXtJhrKgjkOqLgmzQ="
 .gitlab-ci.yml:
   delete: true
 appveyor.yml:
