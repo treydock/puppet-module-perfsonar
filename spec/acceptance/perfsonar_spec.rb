@@ -4,10 +4,9 @@ describe 'perfsonar class:' do
   context 'default parameters' do
     it 'runs successfully' do
       pp = <<-EOS
-      class { 'firewall':
-        ensure_v6 => 'stopped',
+      class { 'perfsonar':
+        manage_firewall => false,
       }
-      class { 'perfsonar': }
       EOS
 
       apply_manifest(pp, catch_failures: true)
