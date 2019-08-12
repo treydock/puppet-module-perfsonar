@@ -10,12 +10,9 @@ class perfsonar::config {
       password  => $::perfsonar::web_admin_password,
       file      => '/etc/perfsonar/toolkit/psadmin.htpasswd',
       mechanism => 'basic',
-    }
-    -> file { '/etc/perfsonar/toolkit/psadmin.htpasswd':
-      ensure => 'file',
-      owner  => 'root',
-      group  => $::perfsonar::apache_group,
-      mode   => '0640',
+      owner     => 'root',
+      group     => $::perfsonar::apache_group,
+      mode      => '0640',
     }
   }
 
