@@ -110,7 +110,36 @@
 18
 19
 20
-21</pre>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/config.pp', line 3</span>
@@ -125,12 +154,41 @@ class perfsonar::config {
       password  =&gt; $::perfsonar::web_admin_password,
       file      =&gt; &#39;/etc/perfsonar/toolkit/psadmin.htpasswd&#39;,
       mechanism =&gt; &#39;basic&#39;,
+      owner     =&gt; &#39;root&#39;,
+      group     =&gt; $::perfsonar::apache_group,
+      mode      =&gt; &#39;0640&#39;,
     }
   }
 
   if $::perfsonar::remove_root_prompt {
     file { &#39;/etc/profile.d/add_psadmin_pssudo.sh&#39;:
       ensure =&gt; &#39;absent&#39;,
+    }
+  }
+
+  if $::perfsonar::manage_apache {
+    if $::perfsonar::ssl_chain_file {
+      $ssl_chain_file_change = &quot;set /*[self::directive = &#39;SSLCertificateChainFile&#39;]/arg ${::perfsonar::ssl_chain_file}&quot;
+    } else {
+      $ssl_chain_file_change = &#39;rm /*[self::directive = &quot;SSLCertificateChainFile&quot;]&#39;
+    }
+    $ssl_changes = [
+      &quot;set /*[self::directive = &#39;SSLCertificateFile&#39;]/arg ${::perfsonar::ssl_cert}&quot;,
+      &quot;set /*[self::directive = &#39;SSLCertificateKeyFile&#39;]/arg ${::perfsonar::ssl_key}&quot;,
+      $ssl_chain_file_change,
+    ]
+
+    augeas { &#39;apache-perfsonar-ssl&#39;:
+      incl    =&gt; $::perfsonar::apache_ssl_conf,
+      lens    =&gt; &#39;Httpd.lns&#39;,
+      changes =&gt; $ssl_changes,
+      notify  =&gt; Service[&#39;httpd&#39;],
+    }
+
+    service { &#39;httpd&#39;:
+      ensure =&gt; &#39;running&#39;,
+      enable =&gt; true,
+      name   =&gt; $::perfsonar::apache_service,
     }
   }
 }</pre>

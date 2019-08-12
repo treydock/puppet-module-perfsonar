@@ -257,6 +257,132 @@ for setup when root logs in.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>apache_group</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;apache&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Group used by Apache</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_apache</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Boolean that sets if Apache should be managed</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_cert</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/pki/tls/certs/localhost.crt&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The path to Apache SSL certificate</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_key</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/pki/tls/private/localhost.key&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The path to Apache SSL private key</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_chain_file</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The path to Apache SSL chain file</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>apache_ssl_conf</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/httpd/conf.d/ssl.conf&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The path to Apache SSL configuration file</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>apache_service</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;httpd&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The Apache service name</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -267,20 +393,6 @@ for setup when root logs in.</p>
         <pre class="lines">
 
 
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
 39
 40
 41
@@ -295,10 +407,32 @@ for setup when root logs in.</p>
 50
 51
 52
-53</pre>
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 25</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 39</span>
 
 class perfsonar (
   Boolean $manage_repo = true,
@@ -311,6 +445,14 @@ class perfsonar (
   String $web_admin_username = &#39;admin&#39;,
   Optional[String] $web_admin_password = undef,
   Boolean $remove_root_prompt = false,
+  # Apache
+  String $apache_group = &#39;apache&#39;,
+  Boolean $manage_apache = false,
+  Stdlib::Absolutepath $ssl_cert = &#39;/etc/pki/tls/certs/localhost.crt&#39;,
+  Stdlib::Absolutepath $ssl_key = &#39;/etc/pki/tls/private/localhost.key&#39;,
+  Optional[Stdlib::Absolutepath] $ssl_chain_file = undef,
+  Stdlib::Absolutepath $apache_ssl_conf = &#39;/etc/httpd/conf.d/ssl.conf&#39;,
+  String $apache_service = &#39;httpd&#39;,
 ) {
 
   if $manage_repo {

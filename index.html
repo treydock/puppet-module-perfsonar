@@ -109,6 +109,15 @@ href="https://forge.puppet.com/puppetlabs/yum_core">puppetlabs/yum_core</a>.</p>
 <pre class="code ruby"><code class="ruby">include ::perfsonar
 </code></pre>
 
+<p>Set the web user&#39;s admin password and remove file that adds a prompt to
+root logins:</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;::perfsonar&#39;:
+  web_admin_password =&gt; &#39;changeme&#39;,
+  remove_root_prompt =&gt; true,
+}
+</code></pre>
+
 <h2 id="label-Reference">Reference</h2>
 
 <p><a
