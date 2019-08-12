@@ -139,7 +139,12 @@
 47
 48
 49
-50</pre>
+50
+51
+52
+53
+54
+55</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/config.pp', line 3</span>
@@ -167,14 +172,19 @@ class perfsonar::config {
   }
 
   if $::perfsonar::manage_apache {
-    if $::perfsonar::ssl_chain_file {
-      $ssl_chain_file_change = &quot;set /*[self::directive = &#39;SSLCertificateChainFile&#39;]/arg ${::perfsonar::ssl_chain_file}&quot;
+    if $facts[&#39;os&#39;][&#39;family&#39;] == &#39;Debian&#39; {
+      $ssl_change_prefix = &#39;IfModule/VirtualHost&#39;
     } else {
-      $ssl_chain_file_change = &#39;rm /*[self::directive = &quot;SSLCertificateChainFile&quot;]&#39;
+      $ssl_change_prefix = &#39;VirtualHost&#39;
+    }
+    if $::perfsonar::ssl_chain_file {
+      $ssl_chain_file_change = &quot;set ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateChainFile&#39;]/arg ${::perfsonar::ssl_chain_file}&quot;
+    } else {
+      $ssl_chain_file_change = &quot;rm ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateChainFile&#39;]&quot;
     }
     $ssl_changes = [
-      &quot;set /*[self::directive = &#39;SSLCertificateFile&#39;]/arg ${::perfsonar::ssl_cert}&quot;,
-      &quot;set /*[self::directive = &#39;SSLCertificateKeyFile&#39;]/arg ${::perfsonar::ssl_key}&quot;,
+      &quot;set ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateFile&#39;]/arg ${::perfsonar::ssl_cert}&quot;,
+      &quot;set ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateKeyFile&#39;]/arg ${::perfsonar::ssl_key}&quot;,
       $ssl_chain_file_change,
     ]
 
