@@ -15,6 +15,13 @@
 #   Boolean that determines if firewall rules are managed.
 # @param with_ipv6
 #   Boolean that determines if IPv6 support should be enabled
+# @param web_admin_username
+#   User name used to log into perfSONAR web interface
+# @param web_admin_password
+#   Password for perfSONAR web login
+# @param remove_root_prompt
+#   Boolean that determines if file should be removed that
+#   provides a prompt for setup when root logs in.
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
@@ -23,6 +30,9 @@ class perfsonar (
   Array $optional_packages = [],
   Boolean $manage_firewall = true,
   Boolean $with_ipv6 = false,
+  String $web_admin_username = 'admin',
+  Optional[String] $web_admin_password = undef,
+  Boolean $remove_root_prompt = false,
 ) {
 
   if $manage_repo {
@@ -35,5 +45,9 @@ class perfsonar (
   }
 
   contain 'perfsonar::install'
+  contain 'perfsonar::config'
+
+  Class['perfsonar::install']
+  -> Class['perfsonar::config']
 
 }

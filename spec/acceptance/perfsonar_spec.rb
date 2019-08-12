@@ -5,7 +5,9 @@ describe 'perfsonar class:' do
     it 'runs successfully' do
       pp = <<-EOS
       class { 'perfsonar':
-        manage_firewall => false,
+        manage_firewall    => false,
+        web_admin_password => 'foobar',
+        remove_root_prompt => true,
       }
       EOS
 
