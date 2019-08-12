@@ -22,6 +22,8 @@
 # @param remove_root_prompt
 #   Boolean that determines if file should be removed that
 #   provides a prompt for setup when root logs in.
+# @param apache_group
+#   Group used by Apache
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
@@ -33,6 +35,8 @@ class perfsonar (
   String $web_admin_username = 'admin',
   Optional[String] $web_admin_password = undef,
   Boolean $remove_root_prompt = false,
+  # Apache
+  String $apache_group = 'apache',
 ) {
 
   if $manage_repo {

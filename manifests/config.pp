@@ -11,6 +11,12 @@ class perfsonar::config {
       file      => '/etc/perfsonar/toolkit/psadmin.htpasswd',
       mechanism => 'basic',
     }
+    -> file { '/etc/perfsonar/toolkit/psadmin.htpasswd':
+      ensure => 'file',
+      owner  => 'root',
+      group  => $::perfsonar::apache_group,
+      mode   => '0640',
+    }
   }
 
   if $::perfsonar::remove_root_prompt {
