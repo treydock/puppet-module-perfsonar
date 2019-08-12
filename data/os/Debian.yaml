@@ -1,4 +1,6 @@
 ---
 perfsonar::apache_group: www-data
-perfsonar::apache_ssl_conf: /etc/apache2/mods-available/ssl.conf
+perfsonar::ssl_cert: /etc/ssl/certs/ssl-cert-snakeoil.pem
+perfsonar::ssl_key: /etc/ssl/private/ssl-cert-snakeoil.key
+perfsonar::apache_ssl_conf: /etc/apache2/sites-available/default-ssl.conf
 perfsonar::apache_service: apache2

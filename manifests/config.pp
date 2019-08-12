@@ -23,14 +23,19 @@ class perfsonar::config {
   }
 
   if $::perfsonar::manage_apache {
-    if $::perfsonar::ssl_chain_file {
-      $ssl_chain_file_change = "set /*[self::directive = 'SSLCertificateChainFile']/arg ${::perfsonar::ssl_chain_file}"
+    if $facts['os']['family'] == 'Debian' {
+      $ssl_change_prefix = 'IfModule/VirtualHost'
     } else {
-      $ssl_chain_file_change = 'rm /*[self::directive = "SSLCertificateChainFile"]'
+      $ssl_change_prefix = 'VirtualHost'
+    }
+    if $::perfsonar::ssl_chain_file {
+      $ssl_chain_file_change = "set ${ssl_change_prefix}/*[self::directive = 'SSLCertificateChainFile']/arg ${::perfsonar::ssl_chain_file}"
+    } else {
+      $ssl_chain_file_change = "rm ${ssl_change_prefix}/*[self::directive = 'SSLCertificateChainFile']"
     }
     $ssl_changes = [
-      "set /*[self::directive = 'SSLCertificateFile']/arg ${::perfsonar::ssl_cert}",
-      "set /*[self::directive = 'SSLCertificateKeyFile']/arg ${::perfsonar::ssl_key}",
+      "set ${ssl_change_prefix}/*[self::directive = 'SSLCertificateFile']/arg ${::perfsonar::ssl_cert}",
+      "set ${ssl_change_prefix}/*[self::directive = 'SSLCertificateKeyFile']/arg ${::perfsonar::ssl_key}",
       $ssl_chain_file_change,
     ]
 

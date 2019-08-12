@@ -1,4 +1,6 @@
 ---
 perfsonar::apache_group: apache
+perfsonar::ssl_cert: /etc/pki/tls/certs/localhost.crt
+perfsonar::ssl_key: /etc/pki/tls/private/localhost.key
 perfsonar::apache_ssl_conf: /etc/httpd/conf.d/ssl.conf
 perfsonar::apache_service: httpd
