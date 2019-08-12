@@ -35,6 +35,15 @@ To install perfSONAR:
 include ::perfsonar
 ```
 
+Set the web user's admin password and remove file that adds a prompt to root logins:
+
+```puppet
+class { '::perfsonar':
+  web_admin_password => 'changeme',
+  remove_root_prompt => true,
+}
+```
+
 ## Reference
 
 [http://treydock.github.io/puppet-module-perfsonar/](http://treydock.github.io/puppet-module-perfsonar/)
