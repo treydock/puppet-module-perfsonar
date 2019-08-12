@@ -15,5 +15,7 @@ fixtures:
       repo: https://github.com/puppetlabs/puppetlabs-firewall.git
     epel:
       repo: https://github.com/stahnma/puppet-module-epel.git
+    httpauth:
+      repo: https://github.com/jamtur01/jamtur01-httpauth.git
   symlinks:
     perfsonar: "#{source_dir}"
