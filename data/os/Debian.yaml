@@ -1,2 +1,4 @@
 ---
 perfsonar::apache_group: www-data
+perfsonar::apache_ssl_conf: /etc/apache2/mods-available/ssl.conf
+perfsonar::apache_service: apache2
