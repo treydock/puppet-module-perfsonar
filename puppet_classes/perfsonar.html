@@ -202,6 +202,61 @@
       
     </li>
   
+    <li>
+      
+        <span class='name'>web_admin_username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;admin&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>User name used to log into perfSONAR web interface</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>web_admin_password</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Password for perfSONAR web login</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>remove_root_prompt</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Boolean that determines if file should be removed that provides a prompt
+for setup when root logs in.</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -212,13 +267,6 @@
         <pre class="lines">
 
 
-18
-19
-20
-21
-22
-23
-24
 25
 26
 27
@@ -233,10 +281,24 @@
 36
 37
 38
-39</pre>
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 18</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 25</span>
 
 class perfsonar (
   Boolean $manage_repo = true,
@@ -246,6 +308,9 @@ class perfsonar (
   Array $optional_packages = [],
   Boolean $manage_firewall = true,
   Boolean $with_ipv6 = false,
+  String $web_admin_username = &#39;admin&#39;,
+  Optional[String] $web_admin_password = undef,
+  Boolean $remove_root_prompt = false,
 ) {
 
   if $manage_repo {
@@ -258,6 +323,10 @@ class perfsonar (
   }
 
   contain &#39;perfsonar::install&#39;
+  contain &#39;perfsonar::config&#39;
+
+  Class[&#39;perfsonar::install&#39;]
+  -&gt; Class[&#39;perfsonar::config&#39;]
 
 }</pre>
       </td>
