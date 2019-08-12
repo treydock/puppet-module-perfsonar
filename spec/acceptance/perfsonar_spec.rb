@@ -21,6 +21,7 @@ describe 'perfsonar class:' do
         manage_firewall    => false,
         web_admin_password => 'foobar',
         remove_root_prompt => true,
+        manage_apache      => true,
       }
       EOS
 

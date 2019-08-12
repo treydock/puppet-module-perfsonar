@@ -24,6 +24,18 @@
 #   provides a prompt for setup when root logs in.
 # @param apache_group
 #   Group used by Apache
+# @param manage_apache
+#   Boolean that sets if Apache should be managed
+# @param ssl_cert
+#   The path to Apache SSL certificate
+# @param ssl_key
+#   The path to Apache SSL private key
+# @param ssl_chain_file
+#   The path to Apache SSL chain file
+# @param apache_ssl_conf
+#   The path to Apache SSL configuration file
+# @param apache_service
+#   The Apache service name
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
@@ -37,6 +49,12 @@ class perfsonar (
   Boolean $remove_root_prompt = false,
   # Apache
   String $apache_group = 'apache',
+  Boolean $manage_apache = false,
+  Stdlib::Absolutepath $ssl_cert = '/etc/pki/tls/certs/localhost.crt',
+  Stdlib::Absolutepath $ssl_key = '/etc/pki/tls/private/localhost.key',
+  Optional[Stdlib::Absolutepath] $ssl_chain_file = undef,
+  Stdlib::Absolutepath $apache_ssl_conf = '/etc/httpd/conf.d/ssl.conf',
+  String $apache_service = 'httpd',
 ) {
 
   if $manage_repo {

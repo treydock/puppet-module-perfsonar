@@ -1,2 +1,4 @@
 ---
 perfsonar::apache_group: apache
+perfsonar::apache_ssl_conf: /etc/httpd/conf.d/ssl.conf
+perfsonar::apache_service: httpd
