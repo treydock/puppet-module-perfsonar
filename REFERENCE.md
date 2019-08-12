@@ -107,3 +107,59 @@ provides a prompt for setup when root logs in.
 
 Default value: `false`
 
+##### `apache_group`
+
+Data type: `String`
+
+Group used by Apache
+
+Default value: 'apache'
+
+##### `manage_apache`
+
+Data type: `Boolean`
+
+Boolean that sets if Apache should be managed
+
+Default value: `false`
+
+##### `ssl_cert`
+
+Data type: `Stdlib::Absolutepath`
+
+The path to Apache SSL certificate
+
+Default value: '/etc/pki/tls/certs/localhost.crt'
+
+##### `ssl_key`
+
+Data type: `Stdlib::Absolutepath`
+
+The path to Apache SSL private key
+
+Default value: '/etc/pki/tls/private/localhost.key'
+
+##### `ssl_chain_file`
+
+Data type: `Optional[Stdlib::Absolutepath]`
+
+The path to Apache SSL chain file
+
+Default value: `undef`
+
+##### `apache_ssl_conf`
+
+Data type: `Stdlib::Absolutepath`
+
+The path to Apache SSL configuration file
+
+Default value: '/etc/httpd/conf.d/ssl.conf'
+
+##### `apache_service`
+
+Data type: `String`
+
+The Apache service name
+
+Default value: 'httpd'
+

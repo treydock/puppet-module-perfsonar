@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v0.3.0](https://github.com/treydock/puppet-module-perfsonar/tree/v0.3.0) (2019-08-12)
+
+[Full Changelog](https://github.com/treydock/puppet-module-perfsonar/compare/v0.2.0...v0.3.0)
+
+### Added
+
+- Rely on httpauth to set permissions on psadmin.htpasswd [\#4](https://github.com/treydock/puppet-module-perfsonar/pull/4) ([treydock](https://github.com/treydock))
+- Manage Apache SSL config [\#3](https://github.com/treydock/puppet-module-perfsonar/pull/3) ([treydock](https://github.com/treydock))
+
+### Fixed
+
+- Fix permissions for psadmin.htpasswd [\#2](https://github.com/treydock/puppet-module-perfsonar/pull/2) ([treydock](https://github.com/treydock))
+
 ## [v0.2.0](https://github.com/treydock/puppet-module-perfsonar/tree/v0.2.0) (2019-08-12)
 
 [Full Changelog](https://github.com/treydock/puppet-module-perfsonar/compare/v0.1.0...v0.2.0)
