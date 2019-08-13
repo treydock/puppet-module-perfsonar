@@ -383,6 +383,24 @@ for setup when root logs in.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>primary_interface</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>(&#39;networking&#39;,&#39;primary&#39;)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The primary interface of host</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -393,8 +411,6 @@ for setup when root logs in.</p>
         <pre class="lines">
 
 
-39
-40
 41
 42
 43
@@ -429,10 +445,14 @@ for setup when root logs in.</p>
 72
 73
 74
-75</pre>
+75
+76
+77
+78
+79</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 39</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 41</span>
 
 class perfsonar (
   Boolean $manage_repo = true,
@@ -453,6 +473,8 @@ class perfsonar (
   Optional[Stdlib::Absolutepath] $ssl_chain_file = undef,
   Stdlib::Absolutepath $apache_ssl_conf = &#39;/etc/httpd/conf.d/ssl.conf&#39;,
   String $apache_service = &#39;httpd&#39;,
+  # Interfaces
+  Optional[String] $primary_interface = $facts.dig(&#39;networking&#39;,&#39;primary&#39;),
 ) {
 
   if $manage_repo {

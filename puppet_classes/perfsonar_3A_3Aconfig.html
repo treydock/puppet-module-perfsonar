@@ -144,7 +144,15 @@
 52
 53
 54
-55</pre>
+55
+56
+57
+58
+59
+60
+61
+62
+63</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/config.pp', line 3</span>
@@ -199,6 +207,14 @@ class perfsonar::config {
       ensure =&gt; &#39;running&#39;,
       enable =&gt; true,
       name   =&gt; $::perfsonar::apache_service,
+    }
+  }
+
+  if $::perfsonar::bundle == &#39;perfsonar-toolkit&#39; and $::perfsonar::primary_interface {
+    file_line { &#39;web_admin-primary_interface&#39;:
+      path  =&gt; &#39;/etc/perfsonar/toolkit/web/web_admin.conf&#39;,
+      line  =&gt; &quot;primary_interface ${::perfsonar::primary_interface}&quot;,
+      match =&gt; &#39;^primary_interface&#39;,
     }
   }
 }</pre>
