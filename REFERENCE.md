@@ -163,3 +163,11 @@ The Apache service name
 
 Default value: 'httpd'
 
+##### `primary_interface`
+
+Data type: `Optional[String]`
+
+The primary interface of host
+
+Default value: ('networking','primary')
+
