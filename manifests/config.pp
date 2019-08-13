@@ -52,4 +52,12 @@ class perfsonar::config {
       name   => $::perfsonar::apache_service,
     }
   }
+
+  if $::perfsonar::bundle == 'perfsonar-toolkit' and $::perfsonar::primary_interface {
+    file_line { 'web_admin-primary_interface':
+      path  => '/etc/perfsonar/toolkit/web/web_admin.conf',
+      line  => "primary_interface ${::perfsonar::primary_interface}",
+      match => '^primary_interface',
+    }
+  }
 }

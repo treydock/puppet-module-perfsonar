@@ -36,6 +36,8 @@
 #   The path to Apache SSL configuration file
 # @param apache_service
 #   The Apache service name
+# @param primary_interface
+#   The primary interface of host
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
@@ -55,6 +57,8 @@ class perfsonar (
   Optional[Stdlib::Absolutepath] $ssl_chain_file = undef,
   Stdlib::Absolutepath $apache_ssl_conf = '/etc/httpd/conf.d/ssl.conf',
   String $apache_service = 'httpd',
+  # Interfaces
+  Optional[String] $primary_interface = $facts.dig('networking','primary'),
 ) {
 
   if $manage_repo {
