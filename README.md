@@ -6,10 +6,9 @@
 #### Table of Contents
 
 1. [Description](#description)
-2. [Setup - The basics of getting started with oxidized](#setup)
+2. [Setup - The basics of getting started with perfsonar](#setup)
     * [What perfsonar affects](#what-perfsonar-affects)
     * [Setup requirements](#setup-requirements)
-    * [Beginning with oxidized](#beginning-with-oxidized)
 3. [Usage - Configuration options and additional functionality](#usage)
 4. [Reference - Module reference](#reference)
 
