@@ -168,7 +168,8 @@
 76
 77
 78
-79</pre>
+79
+80</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/firewall.pp', line 3</span>
@@ -181,6 +182,7 @@ class perfsonar::firewall {
   firewall { &#39;100 forward to perfSONAR&#39;:
     chain =&gt; &#39;INPUT&#39;,
     jump  =&gt; &#39;perfSONAR&#39;,
+    proto =&gt; &#39;all&#39;,
   }
 
   firewallchain { &#39;perfSONAR:filter:IPv4&#39;:
