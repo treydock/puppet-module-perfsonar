@@ -8,6 +8,7 @@ class perfsonar::firewall {
   firewall { '100 forward to perfSONAR':
     chain => 'INPUT',
     jump  => 'perfSONAR',
+    proto => 'all',
   }
 
   firewallchain { 'perfSONAR:filter:IPv4':
