@@ -35,6 +35,35 @@ describe 'perfsonar' do
 
         it { is_expected.to contain_file('/etc/profile.d/add_psadmin_pssudo.sh').with_ensure('absent') }
       end
+
+      context 'when pscheduler_agent_conf is not undef' do
+        let(:params) do
+          {
+            manage_pscheduler_agent: true,
+            pscheduler_agent_config: {
+              'remotes' => [{
+                'url'                => 'https://foo.example.org',
+                'configure-archives' => true,
+              }],
+            },
+          }
+        end
+        let(:config_path) { '/etc/perfsonar/psconfig/pscheduler-agent.json' }
+
+        it do
+          is_expected.to contain_file(config_path).with(
+            ensure: 'file',
+            owner: 'perfsonar',
+            group: 'perfsonar',
+            mode: '0644',
+          )
+        end
+
+        it 'converts data into json' do
+          mycontent = catalogue.resource('File', config_path)[:content]
+          expect(mycontent).to include_json(params[:pscheduler_agent_config])
+        end
+      end
     end
   end
 end
