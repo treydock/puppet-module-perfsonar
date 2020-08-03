@@ -57,6 +57,19 @@ perfsonar::pscheduler_agent_config:
       configure-archives: true
 ```
 
+### Disabling perfsonar-lsregistrationdaemon
+
+The `perfsonar-lsregistrationdaemon` daemon is responsible for registering the
+perfsonar instance in the global registry.
+
+(Hiera Example)
+
+```yaml
+perfsonar::manage_lsregistrationdaemon: true
+perfsonar::lsregistrationdaemon_ensure: 'stopped'
+perfsonar::lsregistrationdaemon_enable: false
+```
+
 ## Reference
 
 [http://treydock.github.io/puppet-module-perfsonar/](http://treydock.github.io/puppet-module-perfsonar/)
