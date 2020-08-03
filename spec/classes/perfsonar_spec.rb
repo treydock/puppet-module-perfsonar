@@ -36,6 +36,17 @@ describe 'perfsonar' do
         it { is_expected.to contain_file('/etc/profile.d/add_psadmin_pssudo.sh').with_ensure('absent') }
       end
 
+      context 'when manage_pscheduler_agent' do
+        let(:params) { { manage_pscheduler_agent: true } }
+
+        it do
+          is_expected.to contain_service('psconfig-pscheduler-agent').with(
+            ensure: 'running',
+            enable: true,
+          )
+        end
+      end
+
       context 'when pscheduler_agent_conf is not undef' do
         let(:params) do
           {
@@ -56,7 +67,7 @@ describe 'perfsonar' do
             owner: 'perfsonar',
             group: 'perfsonar',
             mode: '0644',
-          )
+          ).that_notifies(['Service[psconfig-pscheduler-agent]'])
         end
 
         it 'converts data into json' do
