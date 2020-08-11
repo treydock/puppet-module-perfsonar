@@ -135,7 +135,7 @@
         <span class='name'>bundle</span>
       
       
-        <span class='type'>(<tt>Enum['<span class='object_link'><a href="" title="puppet_classes::perfsonar (puppet_class)">perfsonar</a></span>-tools','<span class='object_link'><a href="" title="puppet_classes::perfsonar (puppet_class)">perfsonar</a></span>-testpoint','<span class='object_link'><a href="" title="puppet_classes::perfsonar (puppet_class)">perfsonar</a></span>-core','perfsonare-centralmanagement','<span class='object_link'><a href="" title="puppet_classes::perfsonar (puppet_class)">perfsonar</a></span>-toolkit']</tt>)</span>
+        <span class='type'>(<tt>Enum['<span class='object_link'><a href="" title="puppet_classes::perfsonar (puppet_class)">perfsonar</a></span>-tools','<span class='object_link'><a href="" title="puppet_classes::perfsonar (puppet_class)">perfsonar</a></span>-testpoint','<span class='object_link'><a href="" title="puppet_classes::perfsonar (puppet_class)">perfsonar</a></span>-core','<span class='object_link'><a href="" title="puppet_classes::perfsonar (puppet_class)">perfsonar</a></span>-centralmanagement','<span class='object_link'><a href="" title="puppet_classes::perfsonar (puppet_class)">perfsonar</a></span>-toolkit']</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>&#39;perfsonar-toolkit&#39;</tt>)</em>
@@ -568,7 +568,7 @@ for setup when root logs in.</p>
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
-  Enum[&#39;perfsonar-tools&#39;,&#39;perfsonar-testpoint&#39;,&#39;perfsonar-core&#39;,&#39;perfsonare-centralmanagement&#39;,&#39;perfsonar-toolkit&#39;]
+  Enum[&#39;perfsonar-tools&#39;,&#39;perfsonar-testpoint&#39;,&#39;perfsonar-core&#39;,&#39;perfsonar-centralmanagement&#39;,&#39;perfsonar-toolkit&#39;]
     $bundle = &#39;perfsonar-toolkit&#39;,
   Array $optional_packages = [],
   Boolean $manage_firewall = true,
