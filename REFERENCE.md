@@ -55,7 +55,7 @@ Default value: ``true``
 
 ##### `bundle`
 
-Data type: `Enum['perfsonar-tools','perfsonar-testpoint','perfsonar-core','perfsonare-centralmanagement','perfsonar-toolkit']`
+Data type: `Enum['perfsonar-tools','perfsonar-testpoint','perfsonar-core','perfsonar-centralmanagement','perfsonar-toolkit']`
 
 The perfSONAR bundle package to install
 
