@@ -51,7 +51,7 @@
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
-  Enum['perfsonar-tools','perfsonar-testpoint','perfsonar-core','perfsonare-centralmanagement','perfsonar-toolkit']
+  Enum['perfsonar-tools','perfsonar-testpoint','perfsonar-core','perfsonar-centralmanagement','perfsonar-toolkit']
     $bundle = 'perfsonar-toolkit',
   Array $optional_packages = [],
   Boolean $manage_firewall = true,
