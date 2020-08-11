@@ -38,6 +38,10 @@
 #   The Apache service name
 # @param primary_interface
 #   The primary interface of host
+# @param manage_pscheduler_agent
+#   Weather or not the pscheduler-agent daemon should be managed
+# @param pscheduler_agent_config
+#   Configuration to convert to json and write to pscheduler-agent.json
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
@@ -59,6 +63,9 @@ class perfsonar (
   String $apache_service = 'httpd',
   # Interfaces
   Optional[String] $primary_interface = $facts.dig('networking','primary'),
+  # pscheduler-agent
+  Boolean $manage_pscheduler_agent = false,
+  Optional[Hash] $pscheduler_agent_config = undef,
 ) {
 
   if $manage_repo {
@@ -68,6 +75,13 @@ class perfsonar (
 
   if $manage_firewall {
     contain 'perfsonar::firewall'
+  }
+
+  if $manage_pscheduler_agent {
+    contain 'perfsonar::pscheduler::agent'
+
+    Class['perfsonar::install']
+    -> Class['perfsonar::pscheduler::agent']
   }
 
   contain 'perfsonar::install'

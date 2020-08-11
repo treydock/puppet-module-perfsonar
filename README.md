@@ -43,6 +43,20 @@ class { '::perfsonar':
 }
 ```
 
+### Managing pscheduler-agent
+
+One or more `pscheduler-agent` remotes may be configured.
+
+(Hiera Example)
+
+```yaml
+perfsonar::manage_pscheduler_agent: true
+perfsonar::pscheduler_agent_config:
+  remotes:
+    - url: "https://foo.example.org/psconfig/bar.json"
+      configure-archives: true
+```
+
 ## Reference
 
 [http://treydock.github.io/puppet-module-perfsonar/](http://treydock.github.io/puppet-module-perfsonar/)
