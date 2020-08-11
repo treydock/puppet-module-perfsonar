@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Puppet Class: perfsonar::install
+  Puppet Class: perfsonar::pscheduler::agent
   
     &mdash; Documentation by YARD 0.9.25
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
 <script type="text/javascript">
-  pathId = "puppet_classes::perfsonar::install";
+  pathId = "puppet_classes::perfsonar::pscheduler::agent";
   relpath = '../';
 </script>
 
@@ -39,7 +39,7 @@
     <a href="../_index.html">Index (p)</a> &raquo;
     <span class='title'><span class='object_link'>Puppet Classes</span></span>
      &raquo; 
-    <span class="title">perfsonar::install</span>
+    <span class="title">perfsonar::pscheduler::agent</span>
   
 </div>
 
@@ -59,20 +59,20 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Puppet Class: perfsonar::install</h1>
+      <div id="content"><h1>Puppet Class: perfsonar::pscheduler::agent</h1>
 <div class="box_info">
   
   
   <dl>
     <dt>Defined in:</dt>
     <dd>
-      manifests/install.pp
+      manifests/pscheduler/agent.pp
     </dd>
   </dl>
 </div>
 
   <h2>Summary</h2>
-  Manage perfsonar packages
+  Manage pschedular-agent service
 
 <h2>Overview</h2>
 <div class="docstring">
@@ -105,22 +105,36 @@
 12
 13
 14
-15</pre>
+15
+16
+17
+18
+19
+20
+21
+22</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/install.pp', line 3</span>
+        <pre class="code"><span class="info file"># File 'manifests/pscheduler/agent.pp', line 3</span>
 
-class perfsonar::install {
+class perfsonar::pscheduler::agent {
   assert_private()
 
-  package { $::perfsonar::bundle:
-    ensure =&gt; &#39;installed&#39;,
+  $config_path = &#39;/etc/perfsonar/psconfig/pscheduler-agent.json&#39;
+
+  service { &#39;psconfig-pscheduler-agent&#39;:
+    ensure =&gt; running,
+    enable =&gt; true,
   }
 
-  $::perfsonar::optional_packages.each |$package| {
-    package { $package:
-      ensure =&gt; &#39;installed&#39;,
-    }
+  if $::perfsonar::pscheduler_agent_config {
+    file { $config_path:
+      ensure  =&gt; file,
+      owner   =&gt; &#39;perfsonar&#39;,
+      group   =&gt; &#39;perfsonar&#39;,
+      mode    =&gt; &#39;0644&#39;,
+      content =&gt; to_json_pretty($::perfsonar::pscheduler_agent_config),
+    } ~&gt; Service[&#39;psconfig-pscheduler-agent&#39;]
   }
 }</pre>
       </td>

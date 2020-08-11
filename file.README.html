@@ -6,15 +6,15 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.20
+    &mdash; Documentation by YARD 0.9.25
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "";
   relpath = '';
 </script>
@@ -114,6 +114,31 @@ root logins:</p>
   web_admin_password =&gt; &#39;changeme&#39;,
   remove_root_prompt =&gt; true,
 }
+</code></pre>
+
+<h3 id="label-Managing+pscheduler-agent">Managing pscheduler-agent</h3>
+
+<p>One or more <code>pscheduler-agent</code> remotes may be configured.</p>
+
+<p>(Hiera Example)</p>
+
+<pre class="code ruby"><code class="ruby">perfsonar::manage_pscheduler_agent: true
+perfsonar::pscheduler_agent_config:
+  remotes:
+    - url: &quot;https://foo.example.org/psconfig/bar.json&quot;
+      configure-archives: true
+</code></pre>
+
+<h3 id="label-Disabling+perfsonar-lsregistrationdaemon">Disabling perfsonar-lsregistrationdaemon</h3>
+
+<p>The <code>perfsonar-lsregistrationdaemon</code> daemon is responsible for
+registering the perfsonar instance in the global registry.</p>
+
+<p>(Hiera Example)</p>
+
+<pre class="code ruby"><code class="ruby">perfsonar::manage_lsregistrationdaemon: true
+perfsonar::lsregistrationdaemon_ensure: &#39;stopped&#39;
+perfsonar::lsregistrationdaemon_enable: false
 </code></pre>
 
 <h2 id="label-Reference">Reference</h2>

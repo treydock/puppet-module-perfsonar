@@ -6,15 +6,15 @@
 <title>
   Puppet Class: perfsonar
   
-    &mdash; Documentation by YARD 0.9.20
+    &mdash; Documentation by YARD 0.9.25
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "puppet_classes::perfsonar";
   relpath = '../';
 </script>
@@ -401,7 +401,98 @@ for setup when root logs in.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>manage_pscheduler_agent</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Weather or not the pscheduler-agent daemon should be managed</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pscheduler_agent_config</span>
+      
+      
+        <span class='type'>(<tt>Optional[Hash]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Configuration to convert to json and write to pscheduler-agent.json</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_lsregistrationdaemon</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Weather or not the perfsonar-lsregistrationdaemon daemon should be managed</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lsregistrationdaemon_ensure</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Ensure::Service</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;running&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>perfsonar-lsregistrationdaemon service ensure</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lsregistrationdaemon_enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>perfsonar-lsregistrationdaemon service enable</p>
+</div>
+      
+    </li>
+  
 </ul>
+
 
 
 </div><div class="method_details_list">
@@ -411,16 +502,6 @@ for setup when root logs in.</p>
         <pre class="lines">
 
 
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
 51
 52
 53
@@ -449,10 +530,40 @@ for setup when root logs in.</p>
 76
 77
 78
-79</pre>
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 41</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 51</span>
 
 class perfsonar (
   Boolean $manage_repo = true,
@@ -475,6 +586,12 @@ class perfsonar (
   String $apache_service = &#39;httpd&#39;,
   # Interfaces
   Optional[String] $primary_interface = $facts.dig(&#39;networking&#39;,&#39;primary&#39;),
+  # pscheduler-agent
+  Boolean $manage_pscheduler_agent = false,
+  Optional[Hash] $pscheduler_agent_config = undef,
+  Boolean $manage_lsregistrationdaemon = false,
+  Stdlib::Ensure::Service $lsregistrationdaemon_ensure = &#39;running&#39;,
+  Boolean $lsregistrationdaemon_enable = true,
 ) {
 
   if $manage_repo {
@@ -484,6 +601,20 @@ class perfsonar (
 
   if $manage_firewall {
     contain &#39;perfsonar::firewall&#39;
+  }
+
+  if $manage_pscheduler_agent {
+    contain &#39;perfsonar::pscheduler::agent&#39;
+
+    Class[&#39;perfsonar::install&#39;]
+    -&gt; Class[&#39;perfsonar::pscheduler::agent&#39;]
+  }
+
+  if $manage_lsregistrationdaemon {
+    contain &#39;perfsonar::lsregistrationdaemon&#39;
+
+    Class[&#39;perfsonar::install&#39;]
+    -&gt; Class[&#39;perfsonar::lsregistrationdaemon&#39;]
   }
 
   contain &#39;perfsonar::install&#39;
