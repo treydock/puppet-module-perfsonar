@@ -42,6 +42,12 @@
 #   Weather or not the pscheduler-agent daemon should be managed
 # @param pscheduler_agent_config
 #   Configuration to convert to json and write to pscheduler-agent.json
+# @param manage_lsregistrationdaemon
+#   Weather or not the perfsonar-lsregistrationdaemon daemon should be managed
+# @param lsregistrationdaemon_ensure
+#   perfsonar-lsregistrationdaemon service ensure
+# @param lsregistrationdaemon_enable
+#   perfsonar-lsregistrationdaemon service enable
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
@@ -66,6 +72,9 @@ class perfsonar (
   # pscheduler-agent
   Boolean $manage_pscheduler_agent = false,
   Optional[Hash] $pscheduler_agent_config = undef,
+  Boolean $manage_lsregistrationdaemon = false,
+  Stdlib::Ensure::Service $lsregistrationdaemon_ensure = 'running',
+  Boolean $lsregistrationdaemon_enable = true,
 ) {
 
   if $manage_repo {
@@ -82,6 +91,13 @@ class perfsonar (
 
     Class['perfsonar::install']
     -> Class['perfsonar::pscheduler::agent']
+  }
+
+  if $manage_lsregistrationdaemon {
+    contain 'perfsonar::lsregistrationdaemon'
+
+    Class['perfsonar::install']
+    -> Class['perfsonar::lsregistrationdaemon']
   }
 
   contain 'perfsonar::install'

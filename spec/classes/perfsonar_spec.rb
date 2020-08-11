@@ -75,6 +75,42 @@ describe 'perfsonar' do
           expect(mycontent).to include_json(params[:pscheduler_agent_config])
         end
       end
+
+      context 'when manage_lsregistrationdaemon' do
+        let(:params) { { manage_lsregistrationdaemon: true } }
+
+        context 'wax on' do
+          let(:params) do
+            super().merge(
+              lsregistrationdaemon_ensure: 'running',
+              lsregistrationdaemon_enable: true,
+            )
+          end
+
+          it do
+            is_expected.to contain_service('perfsonar-lsregistrationdaemon').with(
+              ensure: 'running',
+              enable: true,
+            )
+          end
+        end
+
+        context 'wax off' do
+          let(:params) do
+            super().merge(
+              lsregistrationdaemon_ensure: 'stopped',
+              lsregistrationdaemon_enable: false,
+            )
+          end
+
+          it do
+            is_expected.to contain_service('perfsonar-lsregistrationdaemon').with(
+              ensure: 'stopped',
+              enable: false,
+            )
+          end
+        end
+      end
     end
   end
 end
