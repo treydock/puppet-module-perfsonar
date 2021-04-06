@@ -37,6 +37,7 @@ class perfsonar::firewall {
     {'name' => 'ndt-test', 'dport' => '3001-3003', 'proto' => ['tcp']},
     {'name' => 'ndt-control', 'dport' => '7123', 'proto' => ['tcp']},
     {'name' => 'ndt-flash', 'dport' => '843', 'proto' => ['tcp']},
+    {'name' => 'simplestream', 'dport' => '5890-5900', 'proto' => ['tcp']},
   ]
 
   ($ipv4_firewall_rules + $firewall_rules).each |Integer $index, Hash $rule| {

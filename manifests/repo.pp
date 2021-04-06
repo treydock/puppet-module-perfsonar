@@ -4,8 +4,8 @@ class perfsonar::repo {
   assert_private()
 
   if $facts['os']['family'] == 'RedHat' {
-    if $::perfsonar::manage_epel {
-      include ::epel
+    if $perfsonar::manage_epel {
+      contain 'epel'
     }
     yumrepo { 'perfSONAR':
       descr      => 'perfSONAR RPM Repository - software.internet2.edu - main',
