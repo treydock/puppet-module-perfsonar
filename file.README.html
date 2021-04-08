@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.25
+    &mdash; Documentation by YARD 0.9.26
   
 </title>
 
@@ -62,24 +62,22 @@
 
 <p><a href="https://forge.puppetlabs.com/treydock/perfsonar"><img
 src="http://img.shields.io/puppetforge/v/treydock/perfsonar.svg"></a> <a
-href="https://travis-ci.org/treydock/puppet-module-perfsonar"><img
-src="https://travis-ci.org/treydock/puppet-module-perfsonar.png"></a></p>
+href="https://github.com/treydock/puppet-module-perfsonar/actions?query=workflow%3ACI"><img
+src="https://github.com/treydock/puppet-module-perfsonar/workflows/CI/badge.svg?branch=master"></a></p>
 
 <h4 id="label-Table+of+Contents">Table of Contents</h4>
 <ol><li>
-<p><a href="#label-Description">Description</a></p>
+<p><a href="#description">Description</a></p>
 </li><li>
-<p><a href="#label-Setup">Setup - The basics of getting started with perfsonar</a></p>
+<p><a href="#setup">Setup - The basics of getting started with perfsonar</a></p>
 <ul><li>
-<p><a href="#label-What+perfsonar+affects">What perfsonar affects</a></p>
-</li><li>
-<p><a href="#label-Setup+requirements">Setup requirements</a></p>
+<p><a href="#what-perfsonar-affects">What perfsonar affects</a></p>
 </li></ul>
 </li><li>
-<p><a href="#label-Usage">Usage - Configuration options and additional
+<p><a href="#usage">Usage - Configuration options and additional
 functionality</a></p>
 </li><li>
-<p><a href="#label-Reference">Reference - Module reference</a></p>
+<p><a href="#reference">Reference - Module reference</a></p>
 </li></ol>
 
 <h2 id="label-Description">Description</h2>
@@ -94,23 +92,17 @@ href="https://docs.perfsonar.net/index.html">perfSONAR</a></p>
 <p>At this time the module only adds the perfSONAR repo, installs packages and
 manages firewall rules.</p>
 
-<h3 id="label-Setup+Requirements">Setup Requirements</h3>
-
-<p>For systems with <code>yum</code> package manager using Puppet &gt;= 6.0
-there is a dependency on <a
-href="https://forge.puppet.com/puppetlabs/yumrepo_core">puppetlabs/yumrepo_core</a>.</p>
-
 <h2 id="label-Usage">Usage</h2>
 
 <p>To install perfSONAR:</p>
 
-<pre class="code ruby"><code class="ruby">include ::perfsonar
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_perfsonar'>perfsonar</span>
 </code></pre>
 
 <p>Set the web user&#39;s admin password and remove file that adds a prompt to
 root logins:</p>
 
-<pre class="code ruby"><code class="ruby">class { &#39;::perfsonar&#39;:
+<pre class="code ruby"><code class="ruby">class { &#39;perfsonar&#39;:
   web_admin_password =&gt; &#39;changeme&#39;,
   remove_root_prompt =&gt; true,
 }

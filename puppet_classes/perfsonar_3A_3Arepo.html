@@ -6,7 +6,7 @@
 <title>
   Puppet Class: perfsonar::repo
   
-    &mdash; Documentation by YARD 0.9.25
+    &mdash; Documentation by YARD 0.9.26
   
 </title>
 
@@ -134,8 +134,8 @@ class perfsonar::repo {
   assert_private()
 
   if $facts[&#39;os&#39;][&#39;family&#39;] == &#39;RedHat&#39; {
-    if $::perfsonar::manage_epel {
-      include ::epel
+    if $perfsonar::manage_epel {
+      contain &#39;epel&#39;
     }
     yumrepo { &#39;perfSONAR&#39;:
       descr      =&gt; &#39;perfSONAR RPM Repository - software.internet2.edu - main&#39;,

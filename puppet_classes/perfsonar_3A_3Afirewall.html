@@ -6,7 +6,7 @@
 <title>
   Puppet Class: perfsonar::firewall
   
-    &mdash; Documentation by YARD 0.9.25
+    &mdash; Documentation by YARD 0.9.26
   
 </title>
 
@@ -170,7 +170,8 @@
 77
 78
 79
-80</pre>
+80
+81</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/firewall.pp', line 3</span>
@@ -212,6 +213,7 @@ class perfsonar::firewall {
     {&#39;name&#39; =&gt; &#39;ndt-test&#39;, &#39;dport&#39; =&gt; &#39;3001-3003&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
     {&#39;name&#39; =&gt; &#39;ndt-control&#39;, &#39;dport&#39; =&gt; &#39;7123&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
     {&#39;name&#39; =&gt; &#39;ndt-flash&#39;, &#39;dport&#39; =&gt; &#39;843&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
+    {&#39;name&#39; =&gt; &#39;simplestream&#39;, &#39;dport&#39; =&gt; &#39;5890-5900&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
   ]
 
   ($ipv4_firewall_rules + $firewall_rules).each |Integer $index, Hash $rule| {
