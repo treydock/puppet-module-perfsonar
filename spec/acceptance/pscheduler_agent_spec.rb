@@ -17,7 +17,10 @@ describe 'perfsonar::pscheduler::agent' do
       EOS
     end
 
-    it_behaves_like 'an idempotent resource'
+    it 'runs successfully' do
+      apply_manifest(pp, catch_failures: true)
+      apply_manifest(pp, catch_changes: true)
+    end
 
     describe service('psconfig-pscheduler-agent') do
       it { is_expected.to be_enabled }

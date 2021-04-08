@@ -10,11 +10,10 @@ fixtures:
       repo: https://github.com/puppetlabs/puppetlabs-apt.git
     yumrepo_core:
       repo: https://github.com/puppetlabs/puppetlabs-yumrepo_core.git
-      puppet_version: ">= 6.0.0"
     firewall:
       repo: https://github.com/puppetlabs/puppetlabs-firewall.git
     epel:
-      repo: https://github.com/stahnma/puppet-module-epel.git
+      repo: https://github.com/voxpupuli/puppet-epel.git
     httpauth:
       repo: https://github.com/jamtur01/jamtur01-httpauth.git
   symlinks:
