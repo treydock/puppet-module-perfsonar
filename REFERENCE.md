@@ -21,7 +21,7 @@
 
 ## Classes
 
-### `perfsonar`
+### <a name="perfsonar"></a>`perfsonar`
 
 Manage perfSONAR
 
@@ -35,9 +35,32 @@ include perfsonar
 
 #### Parameters
 
-The following parameters are available in the `perfsonar` class.
+The following parameters are available in the `perfsonar` class:
 
-##### `manage_repo`
+* [`manage_repo`](#manage_repo)
+* [`manage_epel`](#manage_epel)
+* [`bundle`](#bundle)
+* [`optional_packages`](#optional_packages)
+* [`manage_firewall`](#manage_firewall)
+* [`with_ipv6`](#with_ipv6)
+* [`web_admin_username`](#web_admin_username)
+* [`web_admin_password`](#web_admin_password)
+* [`remove_root_prompt`](#remove_root_prompt)
+* [`apache_group`](#apache_group)
+* [`manage_apache`](#manage_apache)
+* [`ssl_cert`](#ssl_cert)
+* [`ssl_key`](#ssl_key)
+* [`ssl_chain_file`](#ssl_chain_file)
+* [`apache_ssl_conf`](#apache_ssl_conf)
+* [`apache_service`](#apache_service)
+* [`primary_interface`](#primary_interface)
+* [`manage_pscheduler_agent`](#manage_pscheduler_agent)
+* [`pscheduler_agent_config`](#pscheduler_agent_config)
+* [`manage_lsregistrationdaemon`](#manage_lsregistrationdaemon)
+* [`lsregistrationdaemon_ensure`](#lsregistrationdaemon_ensure)
+* [`lsregistrationdaemon_enable`](#lsregistrationdaemon_enable)
+
+##### <a name="manage_repo"></a>`manage_repo`
 
 Data type: `Boolean`
 
@@ -45,7 +68,7 @@ Boolean that determines if perfSONAR repos will be managed.
 
 Default value: ``true``
 
-##### `manage_epel`
+##### <a name="manage_epel"></a>`manage_epel`
 
 Data type: `Boolean`
 
@@ -53,7 +76,7 @@ Boolean that determines if EPEL repo is managed.
 
 Default value: ``true``
 
-##### `bundle`
+##### <a name="bundle"></a>`bundle`
 
 Data type: `Enum['perfsonar-tools','perfsonar-testpoint','perfsonar-core','perfsonar-centralmanagement','perfsonar-toolkit']`
 
@@ -61,7 +84,7 @@ The perfSONAR bundle package to install
 
 Default value: `'perfsonar-toolkit'`
 
-##### `optional_packages`
+##### <a name="optional_packages"></a>`optional_packages`
 
 Data type: `Array`
 
@@ -69,7 +92,7 @@ Array of optional packages to install
 
 Default value: `[]`
 
-##### `manage_firewall`
+##### <a name="manage_firewall"></a>`manage_firewall`
 
 Data type: `Boolean`
 
@@ -77,7 +100,7 @@ Boolean that determines if firewall rules are managed.
 
 Default value: ``true``
 
-##### `with_ipv6`
+##### <a name="with_ipv6"></a>`with_ipv6`
 
 Data type: `Boolean`
 
@@ -85,7 +108,7 @@ Boolean that determines if IPv6 support should be enabled
 
 Default value: ``false``
 
-##### `web_admin_username`
+##### <a name="web_admin_username"></a>`web_admin_username`
 
 Data type: `String`
 
@@ -93,7 +116,7 @@ User name used to log into perfSONAR web interface
 
 Default value: `'admin'`
 
-##### `web_admin_password`
+##### <a name="web_admin_password"></a>`web_admin_password`
 
 Data type: `Optional[String]`
 
@@ -101,7 +124,7 @@ Password for perfSONAR web login
 
 Default value: ``undef``
 
-##### `remove_root_prompt`
+##### <a name="remove_root_prompt"></a>`remove_root_prompt`
 
 Data type: `Boolean`
 
@@ -110,7 +133,7 @@ provides a prompt for setup when root logs in.
 
 Default value: ``false``
 
-##### `apache_group`
+##### <a name="apache_group"></a>`apache_group`
 
 Data type: `String`
 
@@ -118,7 +141,7 @@ Group used by Apache
 
 Default value: `'apache'`
 
-##### `manage_apache`
+##### <a name="manage_apache"></a>`manage_apache`
 
 Data type: `Boolean`
 
@@ -126,7 +149,7 @@ Boolean that sets if Apache should be managed
 
 Default value: ``false``
 
-##### `ssl_cert`
+##### <a name="ssl_cert"></a>`ssl_cert`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -134,7 +157,7 @@ The path to Apache SSL certificate
 
 Default value: `'/etc/pki/tls/certs/localhost.crt'`
 
-##### `ssl_key`
+##### <a name="ssl_key"></a>`ssl_key`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -142,7 +165,7 @@ The path to Apache SSL private key
 
 Default value: `'/etc/pki/tls/private/localhost.key'`
 
-##### `ssl_chain_file`
+##### <a name="ssl_chain_file"></a>`ssl_chain_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
@@ -150,7 +173,7 @@ The path to Apache SSL chain file
 
 Default value: ``undef``
 
-##### `apache_ssl_conf`
+##### <a name="apache_ssl_conf"></a>`apache_ssl_conf`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -158,7 +181,7 @@ The path to Apache SSL configuration file
 
 Default value: `'/etc/httpd/conf.d/ssl.conf'`
 
-##### `apache_service`
+##### <a name="apache_service"></a>`apache_service`
 
 Data type: `String`
 
@@ -166,7 +189,7 @@ The Apache service name
 
 Default value: `'httpd'`
 
-##### `primary_interface`
+##### <a name="primary_interface"></a>`primary_interface`
 
 Data type: `Optional[String]`
 
@@ -174,7 +197,7 @@ The primary interface of host
 
 Default value: `('networking','primary')`
 
-##### `manage_pscheduler_agent`
+##### <a name="manage_pscheduler_agent"></a>`manage_pscheduler_agent`
 
 Data type: `Boolean`
 
@@ -182,7 +205,7 @@ Weather or not the pscheduler-agent daemon should be managed
 
 Default value: ``false``
 
-##### `pscheduler_agent_config`
+##### <a name="pscheduler_agent_config"></a>`pscheduler_agent_config`
 
 Data type: `Optional[Hash]`
 
@@ -190,7 +213,7 @@ Configuration to convert to json and write to pscheduler-agent.json
 
 Default value: ``undef``
 
-##### `manage_lsregistrationdaemon`
+##### <a name="manage_lsregistrationdaemon"></a>`manage_lsregistrationdaemon`
 
 Data type: `Boolean`
 
@@ -198,7 +221,7 @@ Weather or not the perfsonar-lsregistrationdaemon daemon should be managed
 
 Default value: ``false``
 
-##### `lsregistrationdaemon_ensure`
+##### <a name="lsregistrationdaemon_ensure"></a>`lsregistrationdaemon_ensure`
 
 Data type: `Stdlib::Ensure::Service`
 
@@ -206,7 +229,7 @@ perfsonar-lsregistrationdaemon service ensure
 
 Default value: `'running'`
 
-##### `lsregistrationdaemon_enable`
+##### <a name="lsregistrationdaemon_enable"></a>`lsregistrationdaemon_enable`
 
 Data type: `Boolean`
 
