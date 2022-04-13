@@ -3,9 +3,8 @@
   acceptance_matrix:
     set:
       - centos-7
-      - ---centos-8
+      - ---rocky-8
       - debian-9
-      - ubuntu-1604
       - ubuntu-1804
 .gitlab-ci.yml:
   delete: true
@@ -15,7 +14,7 @@ Gemfile:
   required:
     ':development':
       - gem: rspec-json_expectations
-spec/acceptance/nodesets/centos-8.yml:
+spec/acceptance/nodesets/rocky-8.yml:
   delete: true
 spec/acceptance/nodesets/debian-10.yml:
   delete: true
