@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v1.1.0](https://github.com/treydock/puppet-module-perfsonar/tree/v1.1.0) (2022-04-13)
+
+[Full Changelog](https://github.com/treydock/puppet-module-perfsonar/compare/v1.0.0...v1.1.0)
+
+### UNCATEGORIZED PRS; GO LABEL THEM
+
+- update module deps [\#18](https://github.com/treydock/puppet-module-perfsonar/pull/18) ([jhoblitt](https://github.com/jhoblitt))
+
 ## [v1.0.0](https://github.com/treydock/puppet-module-perfsonar/tree/v1.0.0) (2021-04-08)
 
 [Full Changelog](https://github.com/treydock/puppet-module-perfsonar/compare/v0.6.1...v1.0.0)
