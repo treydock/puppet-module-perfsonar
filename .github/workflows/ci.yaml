@@ -49,7 +49,6 @@ jobs:
         set:
           - "centos-7"
           - "debian-9"
-          - "ubuntu-1604"
           - "ubuntu-1804"
         puppet:
           - "puppet6"

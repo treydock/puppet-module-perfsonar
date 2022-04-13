@@ -61,7 +61,6 @@
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "16.04",
         "18.04"
       ]
     }
@@ -72,7 +71,7 @@
       "version_requirement": ">= 6.0.0 < 8.0.0"
     }
   ],
-  "pdk-version": "1.17.0",
+  "pdk-version": "2.1.0",
   "template-url": "https://github.com/treydock/pdk-templates.git#master",
-  "template-ref": "heads/master-0-g1d2967a"
+  "template-ref": "heads/master-0-g089be8b"
 }
