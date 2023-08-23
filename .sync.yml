@@ -1,7 +1,5 @@
 ---
 .github/workflows/ci.yaml:
-  unit_excludes:
-    puppet: '8'
   acceptance_matrix:
     set:
       - el7
@@ -11,7 +9,7 @@
       - ubuntu-2004
     puppet:
       - puppet7
-      - ---puppet8
+      - puppet8
 .gitlab-ci.yml:
   delete: true
 appveyor.yml:
