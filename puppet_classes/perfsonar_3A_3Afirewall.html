@@ -6,7 +6,7 @@
 <title>
   Puppet Class: perfsonar::firewall
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -80,6 +80,7 @@
     
   </div>
 </div>
+
 
 
 <div class="tags">
@@ -170,8 +171,7 @@
 77
 78
 79
-80
-81</pre>
+80</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/firewall.pp', line 3</span>
@@ -179,7 +179,7 @@
 class perfsonar::firewall {
   assert_private()
 
-  include ::firewall
+  include firewall
 
   firewall { &#39;100 forward to perfSONAR&#39;:
     chain =&gt; &#39;INPUT&#39;,
@@ -193,27 +193,27 @@ class perfsonar::firewall {
   }
 
   $ipv4_firewall_rules = [
-    {&#39;name&#39; =&gt; &#39;icmp&#39;, &#39;dport&#39; =&gt; undef, &#39;proto&#39; =&gt; [&#39;icmp&#39;]},
+    { &#39;name&#39; =&gt; &#39;icmp&#39;, &#39;dport&#39; =&gt; undef, &#39;proto&#39; =&gt; [&#39;icmp&#39;] },
   ]
   $ipv6_firewall_rules = [
-    {&#39;name&#39; =&gt; &#39;icmp&#39;, &#39;dport&#39; =&gt; undef, &#39;proto&#39; =&gt; [&#39;ipv6-icmp&#39;]},
+    { &#39;name&#39; =&gt; &#39;icmp&#39;, &#39;dport&#39; =&gt; undef, &#39;proto&#39; =&gt; [&#39;ipv6-icmp&#39;] },
   ]
   $firewall_rules = [
-    {&#39;name&#39; =&gt; &#39;owamp-test&#39;, &#39;dport&#39; =&gt; &#39;8760-9960&#39;, &#39;proto&#39; =&gt; [&#39;udp&#39;,&#39;tcp&#39;]},
-    {&#39;name&#39; =&gt; &#39;owamp-control&#39;, &#39;dport&#39; =&gt; &#39;861&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
-    {&#39;name&#39; =&gt; &#39;twamp-test&#39;, &#39;dport&#39; =&gt; &#39;18760-19960&#39;, &#39;proto&#39; =&gt; [&#39;udp&#39;,&#39;tcp&#39;]},
-    {&#39;name&#39; =&gt; &#39;twamp-control&#39;, &#39;dport&#39; =&gt; &#39;862&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
-    {&#39;name&#39; =&gt; &#39;bwctl-control&#39;, &#39;dport&#39; =&gt; &#39;4823&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
-    {&#39;name&#39; =&gt; &#39;traceroute&#39;, &#39;dport&#39; =&gt; &#39;33434-33634&#39;, &#39;proto&#39; =&gt; [&#39;udp&#39;]},
-    {&#39;name&#39; =&gt; &#39;iperf3&#39;, &#39;dport&#39; =&gt; &#39;5201&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;,&#39;udp&#39;]},
-    {&#39;name&#39; =&gt; &#39;iperf2&#39;, &#39;dport&#39; =&gt; &#39;5001&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;,&#39;udp&#39;]},
-    {&#39;name&#39; =&gt; &#39;nuttcp&#39;, &#39;dport&#39; =&gt; [&#39;5000&#39;,&#39;5101&#39;], &#39;proto&#39; =&gt; [&#39;tcp&#39;,&#39;udp&#39;]},
-    {&#39;name&#39; =&gt; &#39;web&#39;, &#39;dport&#39; =&gt; [&#39;80&#39;,&#39;443&#39;], &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
-    {&#39;name&#39; =&gt; &#39;lookup&#39;, &#39;dport&#39; =&gt; &#39;8090&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
-    {&#39;name&#39; =&gt; &#39;ndt-test&#39;, &#39;dport&#39; =&gt; &#39;3001-3003&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
-    {&#39;name&#39; =&gt; &#39;ndt-control&#39;, &#39;dport&#39; =&gt; &#39;7123&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
-    {&#39;name&#39; =&gt; &#39;ndt-flash&#39;, &#39;dport&#39; =&gt; &#39;843&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
-    {&#39;name&#39; =&gt; &#39;simplestream&#39;, &#39;dport&#39; =&gt; &#39;5890-5900&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;]},
+    { &#39;name&#39; =&gt; &#39;owamp-test&#39;, &#39;dport&#39; =&gt; &#39;8760-9960&#39;, &#39;proto&#39; =&gt; [&#39;udp&#39;,&#39;tcp&#39;] },
+    { &#39;name&#39; =&gt; &#39;owamp-control&#39;, &#39;dport&#39; =&gt; &#39;861&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;] },
+    { &#39;name&#39; =&gt; &#39;twamp-test&#39;, &#39;dport&#39; =&gt; &#39;18760-19960&#39;, &#39;proto&#39; =&gt; [&#39;udp&#39;,&#39;tcp&#39;] },
+    { &#39;name&#39; =&gt; &#39;twamp-control&#39;, &#39;dport&#39; =&gt; &#39;862&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;] },
+    { &#39;name&#39; =&gt; &#39;bwctl-control&#39;, &#39;dport&#39; =&gt; &#39;4823&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;] },
+    { &#39;name&#39; =&gt; &#39;traceroute&#39;, &#39;dport&#39; =&gt; &#39;33434-33634&#39;, &#39;proto&#39; =&gt; [&#39;udp&#39;] },
+    { &#39;name&#39; =&gt; &#39;iperf3&#39;, &#39;dport&#39; =&gt; &#39;5201&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;,&#39;udp&#39;] },
+    { &#39;name&#39; =&gt; &#39;iperf2&#39;, &#39;dport&#39; =&gt; &#39;5001&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;,&#39;udp&#39;] },
+    { &#39;name&#39; =&gt; &#39;nuttcp&#39;, &#39;dport&#39; =&gt; [&#39;5000&#39;,&#39;5101&#39;], &#39;proto&#39; =&gt; [&#39;tcp&#39;,&#39;udp&#39;] },
+    { &#39;name&#39; =&gt; &#39;web&#39;, &#39;dport&#39; =&gt; [&#39;80&#39;,&#39;443&#39;], &#39;proto&#39; =&gt; [&#39;tcp&#39;] },
+    { &#39;name&#39; =&gt; &#39;lookup&#39;, &#39;dport&#39; =&gt; &#39;8090&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;] },
+    { &#39;name&#39; =&gt; &#39;ndt-test&#39;, &#39;dport&#39; =&gt; &#39;3001-3003&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;] },
+    { &#39;name&#39; =&gt; &#39;ndt-control&#39;, &#39;dport&#39; =&gt; &#39;7123&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;] },
+    { &#39;name&#39; =&gt; &#39;ndt-flash&#39;, &#39;dport&#39; =&gt; &#39;843&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;] },
+    { &#39;name&#39; =&gt; &#39;simplestream&#39;, &#39;dport&#39; =&gt; &#39;5890-5900&#39;, &#39;proto&#39; =&gt; [&#39;tcp&#39;] },
   ]
 
   ($ipv4_firewall_rules + $firewall_rules).each |Integer $index, Hash $rule| {
@@ -228,7 +228,7 @@ class perfsonar::firewall {
     }
   }
 
-  if $::perfsonar::with_ipv6 {
+  if $perfsonar::with_ipv6 {
     firewall { &#39;100 forward to perfSONAR ipv6&#39;:
       chain    =&gt; &#39;INPUT&#39;,
       jump     =&gt; &#39;perfSONAR&#39;,
@@ -253,7 +253,6 @@ class perfsonar::firewall {
       }
     }
   }
-
 }</pre>
       </td>
     </tr>

@@ -6,7 +6,7 @@
 <title>
   Puppet Class: perfsonar
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -82,6 +82,7 @@
 </div>
 
 
+
 <div class="tags">
   
   <div class="examples">
@@ -126,6 +127,24 @@
         &mdash;
         <div class='inline'>
 <p>Boolean that determines if EPEL repo is managed.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>release_url</span>
+      
+      
+        <span class='type'>(<tt>Variant[Stdlib::HTTPUrl,Stdlib::HTTPSUrl]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;http://software.internet2.edu/rpms/el${facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;]}/x86_64/latest/packages/perfsonar-repo-0.11-1.noarch.rpm&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Release URL for adding GPG key</p>
 </div>
       
     </li>
@@ -251,8 +270,7 @@
       
         &mdash;
         <div class='inline'>
-<p>Boolean that determines if file should be removed that provides a prompt
-for setup when root logs in.</p>
+<p>Boolean that determines if file should be removed that provides a prompt for setup when root logs in.</p>
 </div>
       
     </li>
@@ -391,7 +409,7 @@ for setup when root logs in.</p>
         <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>(&#39;networking&#39;,&#39;primary&#39;)</tt>)</em>
+        <em class="default">(defaults to: <tt>$facts.dig(&#39;networking&#39;,&#39;primary&#39;)</tt>)</em>
       
       
         &mdash;
@@ -502,8 +520,6 @@ for setup when root logs in.</p>
         <pre class="lines">
 
 
-51
-52
 53
 54
 55
@@ -560,16 +576,18 @@ for setup when root logs in.</p>
 106
 107
 108
-109</pre>
+109
+110</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 51</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 53</span>
 
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
+  Variant[Stdlib::HTTPUrl,Stdlib::HTTPSUrl] $release_url = &quot;http://software.internet2.edu/rpms/el${facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;]}/x86_64/latest/packages/perfsonar-repo-0.11-1.noarch.rpm&quot;,
   Enum[&#39;perfsonar-tools&#39;,&#39;perfsonar-testpoint&#39;,&#39;perfsonar-core&#39;,&#39;perfsonar-centralmanagement&#39;,&#39;perfsonar-toolkit&#39;]
-    $bundle = &#39;perfsonar-toolkit&#39;,
+  $bundle = &#39;perfsonar-toolkit&#39;,
   Array $optional_packages = [],
   Boolean $manage_firewall = true,
   Boolean $with_ipv6 = false,
@@ -593,7 +611,6 @@ class perfsonar (
   Stdlib::Ensure::Service $lsregistrationdaemon_ensure = &#39;running&#39;,
   Boolean $lsregistrationdaemon_enable = true,
 ) {
-
   if $manage_repo {
     contain &#39;perfsonar::repo&#39;
     Class[&#39;perfsonar::repo&#39;] -&gt; Class[&#39;perfsonar::install&#39;]
@@ -622,7 +639,6 @@ class perfsonar (
 
   Class[&#39;perfsonar::install&#39;]
   -&gt; Class[&#39;perfsonar::config&#39;]
-
 }</pre>
       </td>
     </tr>

@@ -6,7 +6,7 @@
 <title>
   Puppet Class: perfsonar::config
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -80,6 +80,7 @@
     
   </div>
 </div>
+
 
 
 <div class="tags">
@@ -161,44 +162,44 @@
 class perfsonar::config {
   assert_private()
 
-  if $::perfsonar::web_admin_password {
+  if $perfsonar::web_admin_password {
     httpauth { &#39;psadmin&#39;:
       ensure    =&gt; &#39;present&#39;,
-      username  =&gt; $::perfsonar::web_admin_username,
-      password  =&gt; $::perfsonar::web_admin_password,
+      username  =&gt; $perfsonar::web_admin_username,
+      password  =&gt; $perfsonar::web_admin_password,
       file      =&gt; &#39;/etc/perfsonar/toolkit/psadmin.htpasswd&#39;,
       mechanism =&gt; &#39;basic&#39;,
       owner     =&gt; &#39;root&#39;,
-      group     =&gt; $::perfsonar::apache_group,
+      group     =&gt; $perfsonar::apache_group,
       mode      =&gt; &#39;0640&#39;,
     }
   }
 
-  if $::perfsonar::remove_root_prompt {
+  if $perfsonar::remove_root_prompt {
     file { &#39;/etc/profile.d/add_psadmin_pssudo.sh&#39;:
       ensure =&gt; &#39;absent&#39;,
     }
   }
 
-  if $::perfsonar::manage_apache {
+  if $perfsonar::manage_apache {
     if $facts[&#39;os&#39;][&#39;family&#39;] == &#39;Debian&#39; {
       $ssl_change_prefix = &#39;IfModule/VirtualHost&#39;
     } else {
       $ssl_change_prefix = &#39;VirtualHost&#39;
     }
-    if $::perfsonar::ssl_chain_file {
-      $ssl_chain_file_change = &quot;set ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateChainFile&#39;]/arg ${::perfsonar::ssl_chain_file}&quot;
+    if $perfsonar::ssl_chain_file {
+      $ssl_chain_file_change = &quot;set ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateChainFile&#39;]/arg ${perfsonar::ssl_chain_file}&quot;
     } else {
       $ssl_chain_file_change = &quot;rm ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateChainFile&#39;]&quot;
     }
     $ssl_changes = [
-      &quot;set ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateFile&#39;]/arg ${::perfsonar::ssl_cert}&quot;,
-      &quot;set ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateKeyFile&#39;]/arg ${::perfsonar::ssl_key}&quot;,
+      &quot;set ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateFile&#39;]/arg ${perfsonar::ssl_cert}&quot;,
+      &quot;set ${ssl_change_prefix}/*[self::directive = &#39;SSLCertificateKeyFile&#39;]/arg ${perfsonar::ssl_key}&quot;,
       $ssl_chain_file_change,
     ]
 
     augeas { &#39;apache-perfsonar-ssl&#39;:
-      incl    =&gt; $::perfsonar::apache_ssl_conf,
+      incl    =&gt; $perfsonar::apache_ssl_conf,
       lens    =&gt; &#39;Httpd.lns&#39;,
       changes =&gt; $ssl_changes,
       notify  =&gt; Service[&#39;httpd&#39;],
@@ -207,14 +208,14 @@ class perfsonar::config {
     service { &#39;httpd&#39;:
       ensure =&gt; &#39;running&#39;,
       enable =&gt; true,
-      name   =&gt; $::perfsonar::apache_service,
+      name   =&gt; $perfsonar::apache_service,
     }
   }
 
-  if $::perfsonar::bundle == &#39;perfsonar-toolkit&#39; and $::perfsonar::primary_interface {
+  if $perfsonar::bundle == &#39;perfsonar-toolkit&#39; and $perfsonar::primary_interface {
     file_line { &#39;web_admin-primary_interface&#39;:
       path  =&gt; &#39;/etc/perfsonar/toolkit/web/web_admin.conf&#39;,
-      line  =&gt; &quot;primary_interface ${::perfsonar::primary_interface}&quot;,
+      line  =&gt; &quot;primary_interface ${perfsonar::primary_interface}&quot;,
       match =&gt; &#39;^primary_interface&#39;,
     }
   }

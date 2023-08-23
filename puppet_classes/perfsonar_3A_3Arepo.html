@@ -6,7 +6,7 @@
 <title>
   Puppet Class: perfsonar::repo
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -82,6 +82,7 @@
 </div>
 
 
+
 <div class="tags">
   
 
@@ -125,7 +126,19 @@
 32
 33
 34
-35</pre>
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/repo.pp', line 3</span>
@@ -137,12 +150,24 @@ class perfsonar::repo {
     if $perfsonar::manage_epel {
       contain &#39;epel&#39;
     }
+    if versioncmp($facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;], &#39;8&#39;) &gt;= 0 {
+      $gpgkey_path = &#39;/etc/pki/rpm-gpg/RPM-GPG-KEY-perfSONAR&#39;
+      $gpgkey = &quot;file://${gpgkey_path}&quot;
+      exec { &#39;RPM-GPG-KEY-Globus&#39;:
+        path    =&gt; &#39;/usr/bin:/bin:/usr/sbin:/sbin&#39;,
+        command =&gt; &quot;wget -qO- ${perfsonar::release_url} | rpm2cpio - | cpio -i --quiet --to-stdout .${gpgkey_path} &gt; ${gpgkey_path}&quot;,
+        creates =&gt; $gpgkey_path,
+        before  =&gt; Yumrepo[&#39;perfSONAR&#39;],
+      }
+    } else {
+      $gpgkey = &#39;http://software.internet2.edu/rpms/RPM-GPG-KEY-perfSONAR&#39;
+    }
     yumrepo { &#39;perfSONAR&#39;:
       descr      =&gt; &#39;perfSONAR RPM Repository - software.internet2.edu - main&#39;,
-      mirrorlist =&gt; &#39;http://software.internet2.edu/rpms/el7/mirrors-Toolkit-Internet2&#39;,
+      mirrorlist =&gt; &quot;http://software.internet2.edu/rpms/el${facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;]}/mirrors-Toolkit-Internet2&quot;,
       enabled    =&gt; &#39;1&#39;,
       protect    =&gt; &#39;0&#39;,
-      gpgkey     =&gt; &#39;http://software.internet2.edu/rpms/RPM-GPG-KEY-perfSONAR&#39;,
+      gpgkey     =&gt; $gpgkey,
       gpgcheck   =&gt; &#39;1&#39;,
     }
   }

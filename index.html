@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -60,10 +60,7 @@
       <div id="content"><div id='filecontents'>
 <h1 id="label-puppet-module-perfsonar">puppet-module-perfsonar</h1>
 
-<p><a href="https://forge.puppetlabs.com/treydock/perfsonar"><img
-src="http://img.shields.io/puppetforge/v/treydock/perfsonar.svg"></a> <a
-href="https://github.com/treydock/puppet-module-perfsonar/actions?query=workflow%3ACI"><img
-src="https://github.com/treydock/puppet-module-perfsonar/workflows/CI/badge.svg?branch=master"></a></p>
+<p><a href="https://forge.puppetlabs.com/treydock/perfsonar"><img src="http://img.shields.io/puppetforge/v/treydock/perfsonar.svg"></a> <a href="https://github.com/treydock/puppet-module-perfsonar/actions?query=workflow%3ACI"><img src="https://github.com/treydock/puppet-module-perfsonar/workflows/CI/badge.svg?branch=master"></a></p>
 
 <h4 id="label-Table+of+Contents">Table of Contents</h4>
 <ol><li>
@@ -74,23 +71,20 @@ src="https://github.com/treydock/puppet-module-perfsonar/workflows/CI/badge.svg?
 <p><a href="#what-perfsonar-affects">What perfsonar affects</a></p>
 </li></ul>
 </li><li>
-<p><a href="#usage">Usage - Configuration options and additional
-functionality</a></p>
+<p><a href="#usage">Usage - Configuration options and additional functionality</a></p>
 </li><li>
 <p><a href="#reference">Reference - Module reference</a></p>
 </li></ol>
 
 <h2 id="label-Description">Description</h2>
 
-<p>This module will manage <a
-href="https://docs.perfsonar.net/index.html">perfSONAR</a></p>
+<p>This module will manage <a href="https://docs.perfsonar.net/index.html">perfSONAR</a></p>
 
 <h2 id="label-Setup">Setup</h2>
 
 <h3 id="label-What+perfsonar+affects">What perfsonar affects</h3>
 
-<p>At this time the module only adds the perfSONAR repo, installs packages and
-manages firewall rules.</p>
+<p>At this time the module only adds the perfSONAR repo, installs packages and manages firewall rules.</p>
 
 <h2 id="label-Usage">Usage</h2>
 
@@ -99,8 +93,7 @@ manages firewall rules.</p>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_perfsonar'>perfsonar</span>
 </code></pre>
 
-<p>Set the web user&#39;s admin password and remove file that adds a prompt to
-root logins:</p>
+<p>Set the web user&#39;s admin password and remove file that adds a prompt to root logins:</p>
 
 <pre class="code ruby"><code class="ruby">class { &#39;perfsonar&#39;:
   web_admin_password =&gt; &#39;changeme&#39;,
@@ -123,8 +116,7 @@ perfsonar::pscheduler_agent_config:
 
 <h3 id="label-Disabling+perfsonar-lsregistrationdaemon">Disabling perfsonar-lsregistrationdaemon</h3>
 
-<p>The <code>perfsonar-lsregistrationdaemon</code> daemon is responsible for
-registering the perfsonar instance in the global registry.</p>
+<p>The <code>perfsonar-lsregistrationdaemon</code> daemon is responsible for registering the perfsonar instance in the global registry.</p>
 
 <p>(Hiera Example)</p>
 
@@ -135,8 +127,7 @@ perfsonar::lsregistrationdaemon_enable: false
 
 <h2 id="label-Reference">Reference</h2>
 
-<p><a
-href="http://treydock.github.io/puppet-module-perfsonar/">treydock.github.io/puppet-module-perfsonar/</a></p>
+<p><a href="http://treydock.github.io/puppet-module-perfsonar/">treydock.github.io/puppet-module-perfsonar/</a></p>
 </div></div>
 
       <div id="footer">

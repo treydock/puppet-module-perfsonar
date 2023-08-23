@@ -6,7 +6,7 @@
 <title>
   Puppet Class: perfsonar::install
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -82,6 +82,7 @@
 </div>
 
 
+
 <div class="tags">
   
 
@@ -113,11 +114,11 @@
 class perfsonar::install {
   assert_private()
 
-  package { $::perfsonar::bundle:
+  package { $perfsonar::bundle:
     ensure =&gt; &#39;installed&#39;,
   }
 
-  $::perfsonar::optional_packages.each |$package| {
+  $perfsonar::optional_packages.each |$package| {
     package { $package:
       ensure =&gt; &#39;installed&#39;,
     }

@@ -6,7 +6,7 @@
 <title>
   Puppet Class: perfsonar::lsregistrationdaemon
   
-    &mdash; Documentation by YARD 0.9.27
+    &mdash; Documentation by YARD 0.9.34
   
 </title>
 
@@ -82,6 +82,7 @@
 </div>
 
 
+
 <div class="tags">
   
 
@@ -109,8 +110,8 @@ class perfsonar::lsregistrationdaemon {
   assert_private()
 
   service { &#39;perfsonar-lsregistrationdaemon&#39;:
-    ensure =&gt; $::perfsonar::lsregistrationdaemon_ensure,
-    enable =&gt; $::perfsonar::lsregistrationdaemon_enable,
+    ensure =&gt; $perfsonar::lsregistrationdaemon_ensure,
+    enable =&gt; $perfsonar::lsregistrationdaemon_enable,
   }
 }</pre>
       </td>
