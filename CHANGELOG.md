@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v3.0.0](https://github.com/treydock/puppet-module-perfsonar/tree/v3.0.0) (2023-08-23)
+
+[Full Changelog](https://github.com/treydock/puppet-module-perfsonar/compare/v2.0.0...v3.0.0)
+
+### Changed
+
+- Add EL8, EL9, Debian 10, Ubuntu 20.04, Drop Ubuntu 18.04 [\#22](https://github.com/treydock/puppet-module-perfsonar/pull/22) ([treydock](https://github.com/treydock))
+- Drop Puppet 6 , Drop Debian 9 , update module dependencies [\#21](https://github.com/treydock/puppet-module-perfsonar/pull/21) ([treydock](https://github.com/treydock))
+
 ## [v2.0.0](https://github.com/treydock/puppet-module-perfsonar/tree/v2.0.0) (2022-04-13)
 
 [Full Changelog](https://github.com/treydock/puppet-module-perfsonar/compare/v1.1.0...v2.0.0)
