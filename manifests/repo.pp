@@ -9,7 +9,7 @@ class perfsonar::repo {
     }
     yumrepo { 'perfSONAR':
       descr      => 'perfSONAR RPM Repository - software.internet2.edu - main',
-      mirrorlist => 'http://software.internet2.edu/rpms/el7/mirrors-Toolkit-Internet2',
+      mirrorlist => "http://software.internet2.edu/rpms/el${facts['os']['release']['major']}/mirrors-Toolkit-Internet2",
       enabled    => '1',
       protect    => '0',
       gpgkey     => 'http://software.internet2.edu/rpms/RPM-GPG-KEY-perfSONAR',

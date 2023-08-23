@@ -45,7 +45,10 @@ jobs:
       matrix:
         set:
           - "el7"
-          - "ubuntu-1804"
+          - "el8"
+          - "el9"
+          - "debian-10"
+          - "ubuntu-2004"
         puppet:
           - "puppet7"
     env:
