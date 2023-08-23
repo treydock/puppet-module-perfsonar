@@ -52,7 +52,7 @@ class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
   Enum['perfsonar-tools','perfsonar-testpoint','perfsonar-core','perfsonar-centralmanagement','perfsonar-toolkit']
-    $bundle = 'perfsonar-toolkit',
+  $bundle = 'perfsonar-toolkit',
   Array $optional_packages = [],
   Boolean $manage_firewall = true,
   Boolean $with_ipv6 = false,
@@ -76,7 +76,6 @@ class perfsonar (
   Stdlib::Ensure::Service $lsregistrationdaemon_ensure = 'running',
   Boolean $lsregistrationdaemon_enable = true,
 ) {
-
   if $manage_repo {
     contain 'perfsonar::repo'
     Class['perfsonar::repo'] -> Class['perfsonar::install']
@@ -105,5 +104,4 @@ class perfsonar (
 
   Class['perfsonar::install']
   -> Class['perfsonar::config']
-
 }

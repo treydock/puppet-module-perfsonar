@@ -3,7 +3,7 @@
 class perfsonar::firewall {
   assert_private()
 
-  include ::firewall
+  include firewall
 
   firewall { '100 forward to perfSONAR':
     chain => 'INPUT',
@@ -17,27 +17,27 @@ class perfsonar::firewall {
   }
 
   $ipv4_firewall_rules = [
-    {'name' => 'icmp', 'dport' => undef, 'proto' => ['icmp']},
+    { 'name' => 'icmp', 'dport' => undef, 'proto' => ['icmp'] },
   ]
   $ipv6_firewall_rules = [
-    {'name' => 'icmp', 'dport' => undef, 'proto' => ['ipv6-icmp']},
+    { 'name' => 'icmp', 'dport' => undef, 'proto' => ['ipv6-icmp'] },
   ]
   $firewall_rules = [
-    {'name' => 'owamp-test', 'dport' => '8760-9960', 'proto' => ['udp','tcp']},
-    {'name' => 'owamp-control', 'dport' => '861', 'proto' => ['tcp']},
-    {'name' => 'twamp-test', 'dport' => '18760-19960', 'proto' => ['udp','tcp']},
-    {'name' => 'twamp-control', 'dport' => '862', 'proto' => ['tcp']},
-    {'name' => 'bwctl-control', 'dport' => '4823', 'proto' => ['tcp']},
-    {'name' => 'traceroute', 'dport' => '33434-33634', 'proto' => ['udp']},
-    {'name' => 'iperf3', 'dport' => '5201', 'proto' => ['tcp','udp']},
-    {'name' => 'iperf2', 'dport' => '5001', 'proto' => ['tcp','udp']},
-    {'name' => 'nuttcp', 'dport' => ['5000','5101'], 'proto' => ['tcp','udp']},
-    {'name' => 'web', 'dport' => ['80','443'], 'proto' => ['tcp']},
-    {'name' => 'lookup', 'dport' => '8090', 'proto' => ['tcp']},
-    {'name' => 'ndt-test', 'dport' => '3001-3003', 'proto' => ['tcp']},
-    {'name' => 'ndt-control', 'dport' => '7123', 'proto' => ['tcp']},
-    {'name' => 'ndt-flash', 'dport' => '843', 'proto' => ['tcp']},
-    {'name' => 'simplestream', 'dport' => '5890-5900', 'proto' => ['tcp']},
+    { 'name' => 'owamp-test', 'dport' => '8760-9960', 'proto' => ['udp','tcp'] },
+    { 'name' => 'owamp-control', 'dport' => '861', 'proto' => ['tcp'] },
+    { 'name' => 'twamp-test', 'dport' => '18760-19960', 'proto' => ['udp','tcp'] },
+    { 'name' => 'twamp-control', 'dport' => '862', 'proto' => ['tcp'] },
+    { 'name' => 'bwctl-control', 'dport' => '4823', 'proto' => ['tcp'] },
+    { 'name' => 'traceroute', 'dport' => '33434-33634', 'proto' => ['udp'] },
+    { 'name' => 'iperf3', 'dport' => '5201', 'proto' => ['tcp','udp'] },
+    { 'name' => 'iperf2', 'dport' => '5001', 'proto' => ['tcp','udp'] },
+    { 'name' => 'nuttcp', 'dport' => ['5000','5101'], 'proto' => ['tcp','udp'] },
+    { 'name' => 'web', 'dport' => ['80','443'], 'proto' => ['tcp'] },
+    { 'name' => 'lookup', 'dport' => '8090', 'proto' => ['tcp'] },
+    { 'name' => 'ndt-test', 'dport' => '3001-3003', 'proto' => ['tcp'] },
+    { 'name' => 'ndt-control', 'dport' => '7123', 'proto' => ['tcp'] },
+    { 'name' => 'ndt-flash', 'dport' => '843', 'proto' => ['tcp'] },
+    { 'name' => 'simplestream', 'dport' => '5890-5900', 'proto' => ['tcp'] },
   ]
 
   ($ipv4_firewall_rules + $firewall_rules).each |Integer $index, Hash $rule| {
@@ -52,7 +52,7 @@ class perfsonar::firewall {
     }
   }
 
-  if $::perfsonar::with_ipv6 {
+  if $perfsonar::with_ipv6 {
     firewall { '100 forward to perfSONAR ipv6':
       chain    => 'INPUT',
       jump     => 'perfSONAR',
@@ -77,5 +77,4 @@ class perfsonar::firewall {
       }
     }
   }
-
 }

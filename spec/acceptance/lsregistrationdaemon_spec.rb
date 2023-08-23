@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'perfsonar::lsregistrationdaemon' do
   context 'with manage_lsregistrationdaemon' do
     let(:pp) do
-      <<-EOS
+      <<-PP
       class { 'perfsonar':
         manage_firewall             => false,
         manage_lsregistrationdaemon => true,
         lsregistrationdaemon_ensure => 'stopped',
         lsregistrationdaemon_enable => false,
       }
-      EOS
+      PP
     end
 
     it 'runs successfully' do

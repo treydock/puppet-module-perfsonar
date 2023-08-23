@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'perfsonar' do
@@ -53,10 +55,10 @@ describe 'perfsonar' do
             manage_pscheduler_agent: true,
             pscheduler_agent_config: {
               'remotes' => [{
-                'url'                => 'https://foo.example.org',
-                'configure-archives' => true,
-              }],
-            },
+                'url' => 'https://foo.example.org',
+                'configure-archives' => true
+              }]
+            }
           }
         end
         let(:config_path) { '/etc/perfsonar/psconfig/pscheduler-agent.json' }
@@ -79,7 +81,7 @@ describe 'perfsonar' do
       context 'when manage_lsregistrationdaemon' do
         let(:params) { { manage_lsregistrationdaemon: true } }
 
-        context 'wax on' do
+        context 'when lsregistrationdaemon is enabled' do
           let(:params) do
             super().merge(
               lsregistrationdaemon_ensure: 'running',
@@ -95,7 +97,7 @@ describe 'perfsonar' do
           end
         end
 
-        context 'wax off' do
+        context 'when lsregistrationdaemon is disabled' do
           let(:params) do
             super().merge(
               lsregistrationdaemon_ensure: 'stopped',
