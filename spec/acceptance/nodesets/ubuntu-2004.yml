@@ -1,10 +1,10 @@
 HOSTS:
-  ubuntu1804:
+  ubuntu2004:
     roles:
       - agent
-    platform: ubuntu-18.04-amd64
+    platform: ubuntu-20.04-amd64
     hypervisor : docker
-    image: ubuntu:18.04
+    image: ubuntu:20.04
     docker_preserve_image: true
     docker_cmd: '["/sbin/init"]'
     docker_image_commands:
@@ -15,7 +15,7 @@ HOSTS:
       - LANG=en_US.UTF-8
       - LANGUAGE=en_US.UTF-8
       - LC_ALL=en_US.UTF-8
-    docker_container_name: 'perfsonar-ubuntu1804'
+    docker_container_name: 'perfsonar-ubuntu2004'
 CONFIG:
   log_level: debug
   type: foss

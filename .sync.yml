@@ -5,9 +5,10 @@
   acceptance_matrix:
     set:
       - el7
-      - ---el8
-      - ---el9
-      - ubuntu-1804
+      - el8
+      - el9
+      - debian-10
+      - ubuntu-2004
     puppet:
       - puppet7
       - ---puppet8
@@ -19,17 +20,7 @@ Gemfile:
   required:
     ':development':
       - gem: rspec-json_expectations
-spec/acceptance/nodesets/el8.yml:
-  delete: true
-spec/acceptance/nodesets/el9.yml:
-  delete: true
-spec/acceptance/nodesets/debian-10.yml:
-  delete: true
 spec/acceptance/nodesets/debian-11.yml:
-  delete: true
-spec/acceptance/nodesets/ubuntu-1804.yml:
-  unmanaged: true
-spec/acceptance/nodesets/ubuntu-2004.yml:
   delete: true
 spec/acceptance/nodesets/ubuntu-2204.yml:
   delete: true
