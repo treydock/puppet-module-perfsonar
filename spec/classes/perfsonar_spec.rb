@@ -19,6 +19,7 @@ describe 'perfsonar' do
       end
 
       context 'when web_admin_password defined' do
+        let(:facts) { os_facts.merge(webrick_installed: true) }
         let(:params) { { web_admin_password: 'foobar' } }
 
         it do

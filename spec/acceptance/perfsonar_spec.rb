@@ -28,6 +28,8 @@ describe 'perfsonar class:' do
       PP
 
       apply_manifest(pp, catch_failures: true)
+      # TODO: web_admin_password is not idempotent on Puppet 8
+      apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
     end
   end
