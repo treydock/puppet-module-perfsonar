@@ -7,6 +7,8 @@
 #   Boolean that determines if perfSONAR repos will be managed.
 # @param manage_epel
 #   Boolean that determines if EPEL repo is managed.
+# @param release_url
+#   Release URL for adding GPG key
 # @param bundle
 #   The perfSONAR bundle package to install
 # @param optional_packages
@@ -51,6 +53,7 @@
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
+  Variant[Stdlib::HTTPUrl,Stdlib::HTTPSUrl] $release_url = "http://software.internet2.edu/rpms/el${facts['os']['release']['major']}/x86_64/latest/packages/perfsonar-repo-0.11-1.noarch.rpm",
   Enum['perfsonar-tools','perfsonar-testpoint','perfsonar-core','perfsonar-centralmanagement','perfsonar-toolkit']
   $bundle = 'perfsonar-toolkit',
   Array $optional_packages = [],
