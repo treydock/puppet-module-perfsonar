@@ -10,13 +10,14 @@ class perfsonar::pscheduler::agent {
     enable => true,
   }
 
-  if $::perfsonar::pscheduler_agent_config {
+  if $perfsonar::pscheduler_agent_config {
     file { $config_path:
       ensure  => file,
       owner   => 'perfsonar',
       group   => 'perfsonar',
       mode    => '0644',
-      content => to_json_pretty($::perfsonar::pscheduler_agent_config),
-    } ~> Service['psconfig-pscheduler-agent']
+      content => to_json_pretty($perfsonar::pscheduler_agent_config),
+      notify  => Service['psconfig-pscheduler-agent'],
+    }
   }
 }

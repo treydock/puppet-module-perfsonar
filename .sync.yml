@@ -1,11 +1,16 @@
 ---
 .github/workflows/ci.yaml:
+  unit_excludes:
+    puppet: '8'
   acceptance_matrix:
     set:
-      - centos-7
-      - ---rocky-8
-      - debian-9
+      - el7
+      - ---el8
+      - ---el9
       - ubuntu-1804
+    puppet:
+      - puppet7
+      - ---puppet8
 .gitlab-ci.yml:
   delete: true
 appveyor.yml:
@@ -14,11 +19,19 @@ Gemfile:
   required:
     ':development':
       - gem: rspec-json_expectations
-spec/acceptance/nodesets/rocky-8.yml:
+spec/acceptance/nodesets/el8.yml:
+  delete: true
+spec/acceptance/nodesets/el9.yml:
   delete: true
 spec/acceptance/nodesets/debian-10.yml:
   delete: true
+spec/acceptance/nodesets/debian-11.yml:
+  delete: true
+spec/acceptance/nodesets/ubuntu-1804.yml:
+  unmanaged: true
 spec/acceptance/nodesets/ubuntu-2004.yml:
+  delete: true
+spec/acceptance/nodesets/ubuntu-2204.yml:
   delete: true
 spec/spec_helper.rb:
   spec_overrides:

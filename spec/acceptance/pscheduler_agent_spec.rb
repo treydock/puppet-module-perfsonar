@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'perfsonar::pscheduler::agent' do
   context 'with pscheduler_agent_config' do
     let(:pp) do
-      <<-EOS
+      <<-PP
       class { 'perfsonar':
         manage_firewall         => false,
         manage_pscheduler_agent => true,
@@ -14,7 +16,7 @@ describe 'perfsonar::pscheduler::agent' do
           }],
         }
       }
-      EOS
+      PP
     end
 
     it 'runs successfully' do

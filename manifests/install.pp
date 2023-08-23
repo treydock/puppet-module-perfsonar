@@ -3,11 +3,11 @@
 class perfsonar::install {
   assert_private()
 
-  package { $::perfsonar::bundle:
+  package { $perfsonar::bundle:
     ensure => 'installed',
   }
 
-  $::perfsonar::optional_packages.each |$package| {
+  $perfsonar::optional_packages.each |$package| {
     package { $package:
       ensure => 'installed',
     }

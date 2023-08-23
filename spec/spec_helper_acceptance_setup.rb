@@ -1,4 +1,6 @@
-hiera_yaml = <<-EOS
+# frozen_string_literal: true
+
+hiera_yaml = <<-HIERA
 ---
 version: 5
 defaults:
@@ -9,11 +11,11 @@ hierarchy:
     path: "os/%{facts.os.family}.yaml"
   - name: "Common"
     path: "common.yaml"
-EOS
-debian_yaml = <<-EOS
+HIERA
+debian_yaml = <<-HIERA
 ---
 perfsonar::bundle: perfsonar-testpoint
-EOS
+HIERA
 
 create_remote_file(hosts, '/etc/puppetlabs/puppet/hiera.yaml', hiera_yaml)
 on hosts, 'mkdir -p /etc/puppetlabs/puppet/data/os'

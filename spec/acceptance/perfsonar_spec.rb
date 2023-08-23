@@ -1,29 +1,31 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'perfsonar class:' do
-  context 'default parameters' do
+  context 'with default parameters' do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
       class { 'perfsonar':
         manage_firewall    => false,
       }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
     end
   end
 
-  context 'changes' do
+  context 'with changes' do
     it 'runs successfully' do
-      pp = <<-EOS
+      pp = <<-PP
       class { 'perfsonar':
         manage_firewall    => false,
         web_admin_password => 'foobar',
         remove_root_prompt => true,
         manage_apache      => true,
       }
-      EOS
+      PP
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
