@@ -39,6 +39,8 @@ class { 'perfsonar':
 }
 ```
 
+**NOTE: On Puppet 8 the process to add the web admin password is not idempotent. Applying the web admin password on Puppet 8 requires 2 Puppet runs**
+
 ### Managing pscheduler-agent
 
 One or more `pscheduler-agent` remotes may be configured.

@@ -3,7 +3,14 @@
 class perfsonar::config {
   assert_private()
 
-  if $perfsonar::web_admin_password {
+  if $perfsonar::web_admin_password and versioncmp($puppetversion, '8.0') >= 0 { # lint:ignore:variable_scope
+    package { 'webrick':
+      ensure   => 'installed',
+      provider => 'puppet_gem',
+    }
+  }
+
+  if $perfsonar::web_admin_password and $facts['webrick_installed'] {
     httpauth { 'psadmin':
       ensure    => 'present',
       username  => $perfsonar::web_admin_username,
@@ -13,6 +20,9 @@ class perfsonar::config {
       owner     => 'root',
       group     => $perfsonar::apache_group,
       mode      => '0640',
+    }
+    if versioncmp($puppetversion, '8.0') >= 0 { # lint:ignore:variable_scope
+      Httpauth['psadmin'] -> Package['webrick']
     }
   }
 
