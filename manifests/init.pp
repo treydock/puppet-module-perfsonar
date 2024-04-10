@@ -53,7 +53,7 @@
 class perfsonar (
   Boolean $manage_repo = true,
   Boolean $manage_epel = true,
-  Variant[Stdlib::HTTPUrl,Stdlib::HTTPSUrl] $release_url = "http://software.internet2.edu/rpms/el${facts['os']['release']['major']}/x86_64/latest/packages/perfsonar-repo-0.11-1.noarch.rpm",
+  Variant[Stdlib::HTTPUrl,Stdlib::HTTPSUrl] $release_url = "https://software.internet2.edu/rpms/el${facts['os']['release']['major']}/x86_64/latest/packages/perfsonar-repo-0.11-1.noarch.rpm",
   Enum['perfsonar-tools','perfsonar-testpoint','perfsonar-core','perfsonar-centralmanagement','perfsonar-toolkit']
   $bundle = 'perfsonar-toolkit',
   Array $optional_packages = [],

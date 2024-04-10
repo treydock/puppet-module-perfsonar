@@ -3,18 +3,19 @@
 
 ---
 fixtures:
-  repositories:
+  forge_modules:
     stdlib:
-      repo: https://github.com/puppetlabs/puppetlabs-stdlib.git
+      repo: puppetlabs/stdlib
     apt:
-      repo: https://github.com/puppetlabs/puppetlabs-apt.git
+      repo: puppetlabs/apt
     yumrepo_core:
-      repo: https://github.com/puppetlabs/puppetlabs-yumrepo_core.git
+      repo: puppetlabs/yumrepo_core
     firewall:
-      repo: https://github.com/puppetlabs/puppetlabs-firewall.git
+      repo: puppetlabs/firewall
+      ref: '6.0.0'
     epel:
-      repo: https://github.com/voxpupuli/puppet-epel.git
+      repo: puppet/epel
     httpauth:
-      repo: https://github.com/jamtur01/jamtur01-httpauth.git
+      repo: jamtur01/httpauth
   symlinks:
     perfsonar: "#{source_dir}"
