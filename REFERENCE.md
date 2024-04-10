@@ -83,7 +83,7 @@ Data type: `Variant[Stdlib::HTTPUrl,Stdlib::HTTPSUrl]`
 
 Release URL for adding GPG key
 
-Default value: `"http://software.internet2.edu/rpms/el${facts['os']['release']['major']}/x86_64/latest/packages/perfsonar-repo-0.11-1.noarch.rpm"`
+Default value: `"https://software.internet2.edu/rpms/el${facts['os']['release']['major']}/x86_64/latest/packages/perfsonar-repo-0.11-1.noarch.rpm"`
 
 ##### <a name="-perfsonar--bundle"></a>`bundle`
 
