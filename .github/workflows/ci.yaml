@@ -48,11 +48,8 @@ jobs:
       fail-fast: false
       matrix:
         set:
-          - "el7"
           - "el8"
           - "el9"
-          - "debian-10"
-          - "ubuntu-2004"
         puppet:
           - "puppet7"
           - "puppet8"

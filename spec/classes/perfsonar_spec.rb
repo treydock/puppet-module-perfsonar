@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe 'perfsonar' do
   on_supported_os.each do |os, os_facts|
-    context "on #{os}" do
+    context "when #{os}" do
       let(:facts) { os_facts }
 
       it { is_expected.to compile }

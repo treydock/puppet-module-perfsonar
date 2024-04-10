@@ -7,17 +7,15 @@ class perfsonar::repo {
     if $perfsonar::manage_epel {
       contain 'epel'
     }
-    if versioncmp($facts['os']['release']['major'], '8') >= 0 {
-      $gpgkey_path = '/etc/pki/rpm-gpg/RPM-GPG-KEY-perfSONAR'
-      $gpgkey = "file://${gpgkey_path}"
-      exec { 'RPM-GPG-KEY-Globus':
-        path    => '/usr/bin:/bin:/usr/sbin:/sbin',
-        command => "wget -qO- ${perfsonar::release_url} | rpm2cpio - | cpio -i --quiet --to-stdout .${gpgkey_path} > ${gpgkey_path}",
-        creates => $gpgkey_path,
-        before  => Yumrepo['perfSONAR'],
-      }
-    } else {
-      $gpgkey = 'http://software.internet2.edu/rpms/RPM-GPG-KEY-perfSONAR'
+    $gpgkey_path = '/etc/pki/rpm-gpg/RPM-GPG-KEY-perfSONAR'
+    $gpgkey = "file://${gpgkey_path}"
+    # Extract GPG key from release RPM as the GPG keys on website don't match
+    # what is used to sign the RPMs
+    exec { 'RPM-GPG-KEY-perfSONAR':
+      path    => '/usr/bin:/bin:/usr/sbin:/sbin',
+      command => "wget -qO- ${perfsonar::release_url} | rpm2cpio - | cpio -i --quiet --to-stdout .${gpgkey_path} > ${gpgkey_path}",
+      creates => $gpgkey_path,
+      before  => Yumrepo['perfSONAR'],
     }
     yumrepo { 'perfSONAR':
       descr      => 'perfSONAR RPM Repository - software.internet2.edu - main',
@@ -40,7 +38,7 @@ class perfsonar::repo {
       },
       key      => {
         'id'     => '5A507954F531B92300DA2068351ED8279AFA4E0A',
-        'source' => 'http://downloads.perfsonar.net/debian/perfsonar-debian-official.gpg.key',
+        'source' => 'http://downloads.perfsonar.net/debian/perfsonar-official.gpg.key',
       },
     }
   }
