@@ -15,6 +15,8 @@ fixtures:
       ref: '6.0.0'
     epel:
       repo: puppet/epel
+    augeasproviders_apache:
+      repo: puppet/augeasproviders_apache
     httpauth:
       repo: jamtur01/httpauth
   symlinks:

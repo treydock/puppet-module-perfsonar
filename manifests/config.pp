@@ -38,22 +38,26 @@ class perfsonar::config {
     } else {
       $ssl_change_prefix = 'VirtualHost'
     }
-    if $perfsonar::ssl_chain_file {
-      $ssl_chain_file_change = "set ${ssl_change_prefix}/*[self::directive = 'SSLCertificateChainFile']/arg ${perfsonar::ssl_chain_file}"
-    } else {
-      $ssl_chain_file_change = "rm ${ssl_change_prefix}/*[self::directive = 'SSLCertificateChainFile']"
-    }
-    $ssl_changes = [
-      "set ${ssl_change_prefix}/*[self::directive = 'SSLCertificateFile']/arg ${perfsonar::ssl_cert}",
-      "set ${ssl_change_prefix}/*[self::directive = 'SSLCertificateKeyFile']/arg ${perfsonar::ssl_key}",
-      $ssl_chain_file_change,
-    ]
 
-    augeas { 'apache-perfsonar-ssl':
-      incl    => $perfsonar::apache_ssl_conf,
-      lens    => 'Httpd.lns',
-      changes => $ssl_changes,
+    apache_directive { 'SSLCertificateFile':
+      args    => $perfsonar::ssl_cert,
+      context => $ssl_change_prefix,
+      target  => $perfsonar::apache_ssl_conf,
       notify  => Service['httpd'],
+    }
+    apache_directive { 'SSLCertificateKeyFile':
+      args    => $perfsonar::ssl_key,
+      context => $ssl_change_prefix,
+      target  => $perfsonar::apache_ssl_conf,
+      notify  => Service['httpd'],
+    }
+    if $perfsonar::ssl_chain_file {
+      apache_directive { 'SSLCertificateChainFile':
+        args    => $perfsonar::ssl_chain_file,
+        context => 'VirtualHost',
+        target  => $perfsonar::apache_ssl_conf,
+        notify  => Service['httpd'],
+      }
     }
 
     service { 'httpd':
