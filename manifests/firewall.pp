@@ -44,10 +44,10 @@ class perfsonar::firewall {
     $_i = sprintf('%05d', $index)
     $rule['proto'].each |String $proto| {
       firewall { "${_i} ${rule['name']} ${proto} ipv4":
-        proto  => $proto,
-        dport  => $rule['dport'],
-        chain  => 'perfSONAR',
-        action => 'accept',
+        proto => $proto,
+        dport => $rule['dport'],
+        chain => 'perfSONAR',
+        jump  => 'accept',
       }
     }
   }
@@ -56,7 +56,7 @@ class perfsonar::firewall {
     firewall { '100 forward to perfSONAR ipv6':
       chain    => 'INPUT',
       jump     => 'perfSONAR',
-      provider => 'ip6tables',
+      protocol => 'IPv6',
     }
 
     firewallchain { 'perfSONAR:filter:IPv6':
@@ -71,8 +71,8 @@ class perfsonar::firewall {
           proto    => $proto,
           dport    => $rule['dport'],
           chain    => 'perfSONAR',
-          action   => 'accept',
-          provider => 'ip6tables',
+          jump     => 'accept',
+          protocol => 'IPv6',
         }
       }
     }
