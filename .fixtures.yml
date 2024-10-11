@@ -1,23 +1,10 @@
-# This file can be used to install module dependencies for unit testing
-# See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
-
 ---
 fixtures:
   forge_modules:
-    stdlib:
-      repo: puppetlabs/stdlib
-    apt:
-      repo: puppetlabs/apt
-    yumrepo_core:
-      repo: puppetlabs/yumrepo_core
-    firewall:
-      repo: puppetlabs/firewall
-      ref: '6.0.0'
-    epel:
-      repo: puppet/epel
-    augeasproviders_apache:
-      repo: puppet/augeasproviders_apache
-    httpauth:
-      repo: jamtur01/httpauth
-  symlinks:
-    perfsonar: "#{source_dir}"
+    apt: puppetlabs/apt
+    augeasproviders_apache: puppet/augeasproviders_apache
+    epel: puppet/epel
+    firewall: puppetlabs/firewall
+    httpauth: jamtur01/httpauth
+    stdlib: puppetlabs/stdlib
+    yumrepo_core: puppetlabs/yumrepo_core
