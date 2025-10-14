@@ -18,11 +18,15 @@
     },
     {
       "name": "puppetlabs/apt",
-      "version_requirement": ">= 6.0.0 <10.0.0"
+      "version_requirement": ">= 6.0.0 <12.0.0"
     },
     {
       "name": "puppetlabs/firewall",
-      "version_requirement": ">= 1.0.0 <7.0.0"
+      "version_requirement": ">= 1.0.0 <9.0.0"
+    },
+    {
+      "name": "puppetlabs/apache",
+      "version_requirement": ">= 5.5.0 <14.0.0"
     },
     {
       "name": "puppet/epel",
@@ -31,31 +35,24 @@
     {
       "name": "puppet/augeasproviders_apache",
       "version_requirement": ">= 3.2.0 <6.0.0"
-    },
-    {
-      "name": "jamtur01/httpauth",
-      "version_requirement": ">= 0.0.5 <1.0.0"
     }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "8",
         "9"
       ]
     },
     {
       "operatingsystem": "Rocky",
       "operatingsystemrelease": [
-        "8",
         "9"
       ]
     },
     {
       "operatingsystem": "AlmaLinux",
       "operatingsystemrelease": [
-        "8",
         "9"
       ]
     },
@@ -69,10 +66,10 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 7.0.0 < 9.0.0"
+      "version_requirement": ">= 8.0.0 < 9.0.0"
     }
   ],
-  "pdk-version": "2.7.1",
+  "pdk-version": "3.4.0",
   "template-url": "https://github.com/treydock/pdk-templates.git#master",
-  "template-ref": "heads/master-0-g5a59870"
+  "template-ref": "heads/master-0-g3c12381"
 }

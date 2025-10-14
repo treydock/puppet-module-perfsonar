@@ -19,16 +19,12 @@ describe 'perfsonar' do
       end
 
       context 'when web_admin_password defined' do
-        let(:facts) { os_facts.merge(webrick_installed: true) }
         let(:params) { { web_admin_password: 'foobar' } }
 
         it do
-          is_expected.to contain_httpauth('psadmin').with(
-            ensure: 'present',
-            username: 'admin',
-            password: 'foobar',
-            file: '/etc/perfsonar/toolkit/psadmin.htpasswd',
-            mechanism: 'basic',
+          is_expected.to contain_file('/etc/perfsonar/toolkit/psadmin.htpasswd').with(
+            ensure: 'file',
+            content: %r{admin:.+},
           )
         end
       end
@@ -57,9 +53,9 @@ describe 'perfsonar' do
             pscheduler_agent_config: {
               'remotes' => [{
                 'url' => 'https://foo.example.org',
-                'configure-archives' => true
-              }]
-            }
+                'configure-archives' => true,
+              }],
+            },
           }
         end
         let(:config_path) { '/etc/perfsonar/psconfig/pscheduler-agent.json' }
