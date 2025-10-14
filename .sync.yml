@@ -1,14 +1,16 @@
 ---
 .github/workflows/ci.yaml:
+  unit_excludes:
+    puppet: '7'
   acceptance_matrix:
     set:
       - ---el7
-      - el8
+      - ---el8
       - el9
       # Repos are currently broken
       - ---ubuntu-2004
     puppet:
-      - puppet7
+      - ---puppet7
       - puppet8
 .gitlab-ci.yml:
   delete: true
@@ -18,14 +20,17 @@ Gemfile:
   required:
     ':development':
       - gem: rspec-json_expectations
-      - gem: webrick
 spec/acceptance/nodesets/el7.yml:
+  delete: true
+spec/acceptance/nodesets/el8.yml:
   delete: true
 spec/acceptance/nodesets/debian-11.yml:
   delete: true
 spec/acceptance/nodesets/debian-12.yml:
   delete: true
 spec/acceptance/nodesets/ubuntu-2204.yml:
+  delete: true
+spec/acceptance/nodesets/ubuntu-2404.yml:
   delete: true
 spec/spec_helper.rb:
   spec_overrides:

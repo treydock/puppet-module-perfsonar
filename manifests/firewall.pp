@@ -5,6 +5,23 @@ class perfsonar::firewall {
 
   include firewall
 
+  $firewall_module = load_module_metadata('firewall')
+  if versioncmp($firewall_module['version'], '7.0.0') >= 0 {
+    $v6_params = {
+      'protocol' => 'IPv6',
+    }
+    $jump_params = {
+      'jump' => 'accept',
+    }
+  } else {
+    $v6_params = {
+      'provider' => 'ip6tables',
+    }
+    $jump_params = {
+      'action' => 'accept',
+    }
+  }
+
   firewall { '100 forward to perfSONAR':
     chain => 'INPUT',
     jump  => 'perfSONAR',
@@ -44,19 +61,19 @@ class perfsonar::firewall {
     $_i = sprintf('%05d', $index)
     $rule['proto'].each |String $proto| {
       firewall { "${_i} ${rule['name']} ${proto} ipv4":
-        proto  => $proto,
-        dport  => $rule['dport'],
-        chain  => 'perfSONAR',
-        action => 'accept',
+        proto => $proto,
+        dport => $rule['dport'],
+        chain => 'perfSONAR',
+        *     => $jump_params,
       }
     }
   }
 
   if $perfsonar::with_ipv6 {
     firewall { '100 forward to perfSONAR ipv6':
-      chain    => 'INPUT',
-      jump     => 'perfSONAR',
-      provider => 'ip6tables',
+      chain => 'INPUT',
+      jump  => 'perfSONAR',
+      *     => $v6_params,
     }
 
     firewallchain { 'perfSONAR:filter:IPv6':
@@ -68,11 +85,10 @@ class perfsonar::firewall {
       $_i = sprintf('%05d', $index)
       $rule['proto'].each |String $proto| {
         firewall { "${_i} ${rule['name']} ${proto} ipv6":
-          proto    => $proto,
-          dport    => $rule['dport'],
-          chain    => 'perfSONAR',
-          action   => 'accept',
-          provider => 'ip6tables',
+          proto => $proto,
+          dport => $rule['dport'],
+          chain => 'perfSONAR',
+          *     => $v6_params + $jump_params,
         }
       }
     }
